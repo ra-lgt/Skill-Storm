@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="author" content="templatemo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <title>Liberty Template - Create NFT Page</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for ('static',filename='/css/bootstrap.min.css')}}" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+   <link rel="stylesheet" type="text/css" href="{{ url_for ('static',filename='css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/templatemo-liberty-market.css') }}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/owl.css') }}">
+    
+     
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/animate.css') }}">
+    
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+
+<!--
+
+TemplateMo 577 Liberty Market
+
+https://templatemo.com/tm-577-liberty-market
+
+-->
+  </head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo">
+                        <img src="{{url_for ('static',filename='/images/logo.png')}}" alt="">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                         <li><a href="{{url_for('Home')}}">Home</a></li>
+                        <li><a href="{{url_for('explore',page_no=1)}}" >Explore</a></li>
+                        
+
+                        <li><a href="{{url_for('create_contest')}} " class="active">Create Yours</a></li>
+                        
+                        <li><a href="{{url_for('account')}}">Your Account</a></li>
+                        <li><a href="{{url_for('message')}}">Messages</a></li>>
+                        
+                    </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="page-heading normal-space">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h6>Skill Storm</h6>
+          <h2>Create Your Contest Now.</h2>
+          <span>Home > <a href="#">Create Yours</a></span>
+          <div class="buttons">
+            <div class="main-button">
+              <a href="{{url_for('explore',page_no=1)}}">Explore Our Items</a>
+            </div>
+            <div class="border-button">
+              <a href="{{url_for('create_contest')}}">Create Contest</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="item-details-page">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="section-heading">
+            <div class="line-dec"></div>
+            <h2>Apply For <em>Your Contest</em> Here.</h2>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <form id="contact" action="/free_contest_create" method="POST">
+            <div class="row">
+              <div class="col-lg-4">
+                <fieldset>
+                  <label for="title">Contest Title</label>
+                  <input type="title" name="title" id="title" placeholder="Ex. Lyon King" autocomplete="on" required>
+                </fieldset>
+              </div>
+              <div class="col-lg-4">
+                <fieldset>
+                  <label for="description">Description For Contest</label>
+                  <input type="description" name="description" id="description" placeholder="Describe about your contest" autocomplete="on" required>
+                </fieldset>
+              </div>
+              
+              
+              <div class="col-lg-6">
+                <fieldset>
+                  <label for="royalities">Price</label>
+                  <input type="royalities" name="price" id="royalities" placeholder="Common royalties 1-25%" autocomplete="on" required>
+                </fieldset>
+              </div>
+
+              <label class="custom-select" >
+                <label >Select the contest category default(Technology)</label>
+    <select  name='options'>
+      
+    <option value="Technology">Technology</option>
+    <option value="Gaming">Gaming</option>
+    <option value="Music">Music</option>
+    <option value="Fitness">Fitness</option>
+    <option value="Editing">Editing</option>
+    <option value="Photography">Photography</option>
+    <option value="Photography">Other</option>
+  </select>
+</label>
+              <!--<div class="col-lg-4">
+                <fieldset>
+                  <label for="file">Your File</label>
+                  <input type="file" id="file" name="myfiles[]" multiple />
+                </fieldset>
+              </div> !-->
+
+
+              <div class="col-lg-8">
+                <fieldset>
+                  <button type="submit" id="form-submit" class="orange-button">Submit Your Applying</button>
+                </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-lg-12">
+          <div class="section-heading">
+            <div class="line-dec"></div>
+            <h2>This Is <em>Your Contest</em> Preview.</h2>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="left-image">
+            <img src="{{url_for ('static',filename='/images/create-yours.jpg')}}" alt="" style="border-radius: 20px;">
+          </div>
+        </div>
+        <div class="col-lg-5 align-self-center">
+          <h4>Title will be displayed here</h4>
+          
+          <p>Your description will be displayed here</p>
+          <div class="row">
+            <div class="col-3">
+              <span class="bid">
+                Your's Price tag<br><strong>20USD</strong><br>
+              </span>
+            </div>
+            <div class="col-4">
+              <span class="owner">
+                Your Name<br><strong>Alan Smithee</strong><br>
+              </span>
+            </div>
+            <div class="col-5">
+              <span class="ends">
+                 Category<br><strong>Gaming</strong><br>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+   <script src="{{url_for ('static',filename='/js/jquery.min.js')}}"></script>
+  <script src="{{url_for ('static',filename='/js/bootstrap.min.js')}}"></script>
+
+  <script src="{{url_for ('static',filename='/js/isotope.min.js')}}"></script>
+  <script src="{{url_for ('static',filename='/js/owl-carousel.js')}}"></script>
+
+  <script src="{{url_for ('static',filename='/js/tabs.js')}}"></script>
+  <script src="{{url_for ('static',filename='/js/popup.js')}}"></script>
+  <script src="{{url_for ('static',filename='/js/custom.js')}}"></script>
+  </body>
+
+  <style>
+    @charset "UTF-8";
+/* Select Wrapper (for befores & afters) */
+.custom-select {
+  /* wrapper style */
+  position: relative;
+  display: block;
+  max-width: 400px;
+  min-width: 180px;
+  margin: 0 auto;
+  /* the down arrow */
+}
+.custom-select select {
+  /* Select Reset */
+  border: 1px solid #b6b6b6;
+  outline: none;
+  background: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0;
+  margin: 0;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  /* custom select appearance */
+  padding: 12px 55px 15px 15px;
+  font-size: 14px;
+  background-color: white;
+}
+.custom-select:after {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50px;
+  height: 100%;
+  line-height: 50px;
+  content: "▼";
+  
+  text-align: center;
+  z-index: -1;
+  background: #b6b6b6;
+  color: #fff;
+  font-size: 18px;
+}
+
+body {
+  margin-top: 80px;
+}
+  </style>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="author" content="templatemo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+    <title>Liberty Template - NFT Item Detail Page</title>
+
+    <link href="{{ url_for ('static',filename='/css/bootstrap.min.css')}}" rel="stylesheet">
+  
+     
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for ('static',filename='css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/templatemo-liberty-market.css') }}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/owl.css') }}">
+    
+     
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/animate.css') }}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/notification.css') }}">
+    
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+<!--
+
+TemplateMo 577 Liberty Market
+
+https://templatemo.com/tm-577-liberty-market
+
+-->
+  </head>
+
+<body style="background-color : #212529;"> 
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader" >
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky" style="background-color : #212529;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo">
+                        <img src="assets/images/logo.png" alt="">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                       
+                        
+                        
+                        
+                        <li><a href="{{url_for('free_contest_create')}}">Create Yours</a></li>
+                        <li><a href="{{url_for('push_notifications',username='null')}}">Notify</a></li>
+                        <li><a href="{{url_for('admin_chat')}}">Messages</a></li>
+                    </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  
+
+
+
+        
+
+
+
+           
+        </div>
+       
+    </div>
+
+  </div>
+
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<div style="background-color: #212529;">
+        <h1 style="text-align : center;">All Joined Contest</h1>
+  <ol class="olcards">
+    {% if contest %}
+    {% for i in range(count) %}
+    <li style="--cardColor:#fc374e">
+      <div class="content">
+        <div class="icon">Contest_id: {{data['contest_id'][i]}}</div>
+        <br>
+        <br>
+        Title: {{data['title'][i]}}
+        <br>
+        <br>
+        Date: {{data['Date'][i]}}
+        <br>
+        <br>
+        Username: {{data['username'][i]}}
+        <br>
+        <br>
+        Options: {{data['options'][i]}}
+        <br>
+        <br>
+        <a href="{{url_for('Admin_Contest_Delete',contest_id=data['contest_id'][i])}}"><button class="button button--wayra button--border-thick button--text-upper button--size-s">Remove</button></a>
+      </div>
+
+    </li>
+
+    {% endfor %}
+    {% else %}
+    <div>NO CONTEST</div>
+    
+    {% endif %}
+    
+  </ol>
+        
+        </div>
+</body>
+</html>
+
+
+
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+ <script src="{{url_for ('static',filename='/js/jquery.min.js')}}"></script>
+  <script src="{{url_for ('static',filename='/js/bootstrap.min.js')}}"></script>
+
+  <script src="{{url_for ('static',filename='/js/isotope.min.js')}}"></script>
+  <script src="{{url_for ('static',filename='/js/owl-carousel.js')}}"></script>
+
+  <script src="{{url_for ('static',filename='/js/tabs.js')}}"></script>
+  <script src="{{url_for ('static',filename='/js/popup.js')}}"></script>
+  <script src="{{url_for ('static',filename='/js/custom.js')}}"></script>
+ 
+  
+  <style>
+
+h1 {
+  font-family: sans-serif;
+}
+.olcards,
+.olcards * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.olcards {
+  list-style: none;
+  counter-reset: cardCount;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  --cardsGap: 1rem;
+  gap: var(--cardsGap);
+  padding-bottom: var(--cardsGap);
+}
+.olcards li {
+  counter-increment: cardCount;
+  display: flex;
+  color: white;
+  --labelOffset: 1rem;
+  --arrowClipSize: 1.5rem;
+  margin-top: var(--labelOffset);
+}
+
+.olcards li::before {
+  content: counter(cardCount, decimal-leading-zero);
+  background: white;
+  color: var(--cardColor);
+  font-size: 2em;
+  font-weight: 700;
+  transform: translateY(calc(-1 * var(--labelOffset)));
+  margin-right: calc(-1 * var(--labelOffset));
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-inline: 0.5em;
+}
+
+.olcards li .content {
+  background-color: var(--cardColor);
+  --inlinePadding: 1em;
+  --boxPadding: 0.5em;
+  display: grid;
+  padding: var(--boxPadding) calc(var(--inlinePadding) + var(--arrowClipSize))
+    var(--boxPadding) calc(var(--inlinePadding) + var(--labelOffset));
+  grid-template-areas:
+    "icon title"
+    "icon text";
+  gap: 0.25em 1em;
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--arrowClipSize)) 0,
+    100% 50%,
+    calc(100% - var(--arrowClipSize)) 100%,
+    calc(100% - var(--arrowClipSize)) calc(100% + var(--cardsGap)),
+    0 calc(100% + var(--cardsGap))
+  );
+  position: relative;
+}
+.olcards li .content::before {
+  content: "";
+  position: absolute;
+  width: var(--labelOffset);
+  height: var(--labelOffset);
+  background: var(--cardColor);
+  left: 0;
+  bottom: 0;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  filter: brightness(0.75);
+}
+.olcards li .content::after {
+  content: "";
+  position: absolute;
+  height: var(--cardsGap);
+  width: var(--cardsGap);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.25), transparent 50%);
+  left: 0;
+  top: 100%;
+}
+.olcards li .icon {
+  grid-area: icon;
+  align-self: center;
+  font-size: 2em;
+}
+.olcards li .content .title {
+  grid-area: title;
+  font-size: 1.25em;
+  /* font-weight: 700; */
+}
+.olcards li .content .text {
+  grid-area: text;
+}
+/* Wayra */
+.button--wayra {
+  overflow: hidden;
+  width: 245px;
+  -webkit-transition: border-color 0.3s, color 0.3s;
+  transition: border-color 0.3s, color 0.3s;
+  -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+  transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+.button--wayra::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150%;
+  height: 100%;
+  background: #37474f;
+  z-index: -1;
+  -webkit-transform: rotate3d(0, 0, 1, -45deg) translate3d(0, -3em, 0);
+  transform: rotate3d(0, 0, 1, -45deg) translate3d(0, -3em, 0);
+  -webkit-transform-origin: 0% 100%;
+  transform-origin: 0% 100%;
+  -webkit-transition: -webkit-transform 0.3s, opacity 0.3s, background-color 0.3s;
+  transition: transform 0.3s, opacity 0.3s, background-color 0.3s;
+}
+.button--wayra:hover {
+  color: #fff;
+  border-color: #3f51b5;
+}
+.button--wayra.button--inverted:hover {
+  color: #3f51b5;
+  border-color: #fff;
+}
+.button--wayra:hover::before {
+  opacity: 1;
+  background-color: #3f51b5;
+  -webkit-transform: rotate3d(0, 0, 1, 0deg);
+  transform: rotate3d(0, 0, 1, 0deg);
+  -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+  transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+.button--wayra.button--inverted:hover::before {
+  background-color: #fff;
+}
+
+
+  </style>
+
+    
+  </body>
+</html>

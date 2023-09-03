@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/templatemo-liberty-market.css') }}">
+    <title>Responsive Forum Page</title>
+    
+</head>
+<body style="background-color: #343a40;">
+    <header>
+        <h1>Feel Free to Ask Doubts</h1>
+    </header>
+    <main>
+        {% for i in range(count) %}
+        <section class="post" style="background-color: #212529;">
+            <h2>{{data['Title'][i]}}</h2>
+            <p>{{data['Post'][i]}}</p>
+            <p>by:<small> {{data['Username'][i]}}</small></p>
+            <button class="comment-toggle">Show Comments</button>
+            
+            <div class="comments">
+                <h3>Comments</h3>
+                <ul>
+                    {% for j in range(comment_data[data['Title'][i]]['Username'] | length) %}
+                    <li>{{comment_data[data['Title'][i]]['Comment'][j]}} &nbsp; @{{comment_data[data['Title'][i]]['Username'][j]}}</li>
+                    
+                    {% endfor %}
+                    <!-- Add more comments here -->
+                </ul>
+                <form class="comment-form" method="POST" action="{{url_for('post_comments',title=data['Title'][i])}}">
+                    <textarea name="commentContent" placeholder="Add a comment"></textarea>
+                    <button style="background-color: #343a40;"><div class="border-button">
+                        <a>Comment</a>
+                      </div></button>
+                </form>
+            </div>
+        </section>
+        {% endfor %}
+
+        
+    </main>
+
+    <div class="container" style="background-color: #343a40;">
+        <form method="POST" action="{{url_for('post_question')}}">
+        <h1>Post Question</h1>
+        <div class="post-form">
+            <input name="title" type="text" id="postTitle" placeholder="Post Title">
+            <textarea name="post" id="postContent" placeholder="Post Content"></textarea>
+            <button style="background-color: #343a40;"id="postButton"><div class="border-button">
+                <a>POST</a>
+              </div></button>
+        </div>
+        </form>
+        </div>
+    
+</body>
+</html>
+
+<style>
+input[type="text"],textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+
+header {
+    background-color: #6610f2;
+    color: #fff;
+    text-align: center;
+    padding: 1em 0;
+}
+
+main {
+    padding: 2em;
+}
+
+.post {
+    border: 1px solid #ddd;
+    padding: 1em;
+    margin-bottom: 2em;
+}
+
+.comment-toggle {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    cursor: pointer;
+}
+
+.comments {
+    display: none;
+}
+
+.comments.active {
+    display: block;
+    margin-top: 1em;
+}
+li{
+    color: #fff;
+}
+.comments ul {
+    list-style: none;
+    padding: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .post {
+        padding: 0.5em;
+    }
+}
+/* ... previous CSS code ... */
+.comment-form {
+    margin-top: 1em;
+}
+.comment-form textarea {
+    width: 100%;
+    padding: 0.5em;
+}
+.comment-form button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    cursor: pointer;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #343a40;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.post-form {
+    margin-bottom: 20px;
+}
+
+.post-form input,
+.post-form textarea,
+.post-form button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.posts {
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.post {
+    border: 1px solid #ddd;
+    background-color: #fff;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.comment-form {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.comment-form textarea,
+.comment-form button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+
+</style>
+<script>
+    // ... previous JavaScript code ...
+
+// Add event listeners for comment form submissions
+
+const postButton = document.getElementById('postButton');
+const postsContainer = document.getElementById('posts');
+
+postButton.addEventListener('click', () => {
+    const postTitle = document.getElementById('postTitle').value;
+    const postContent = document.getElementById('postContent').value;
+    
+    if (postTitle && postContent) {
+        const post = createPost(postTitle, postContent);
+        postsContainer.appendChild(post);
+        clearPostForm();
+    }
+});
+
+
+    
+  
+
+
+
+
+    const commentToggleButtons = document.querySelectorAll('.comment-toggle');
+
+commentToggleButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const commentsSection = button.nextElementSibling;
+        commentsSection.classList.toggle('active');
+    });
+});
+
+</script>

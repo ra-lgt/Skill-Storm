@@ -1,0 +1,81 @@
+<body>
+    <div class="div">
+        <img src="data:image/png;base64,{{ qr }}" alt="QR Code">
+        <div class="div2">
+            <h1>Contest Title : {{title}}</h1>
+            <h1>Payer Name : {{username}}</h1>
+            <h1>Fee : {{Fee}}</h1>
+            <h3>Steps to be followed</h3>
+            <p>Step 1:Scan the QR code </p>
+            <p>Step 2:Open the link in browser</p>
+            <p>Step 3:Pay the Fee</p>
+            <p>Page gets automatically redirects don't refresh the page</p>
+            <p>Scan the QR code to pay skill-storm has all the rights to access payment in a secured pay</p>
+        </div>
+ <div>
+<img src="{{url_for('static',filename='images/Paytm.jpg')}}" width="50px" height="150px">
+    <img src="{{url_for('static',filename='images/gpay.jpg')}}" width="50px" height="150px">
+    <img src="{{url_for('static',filename='images/UPI.jpg')}}" width="50px" height="150px">
+    </div>
+
+    </div>
+
+    <script type="text/javascript">
+        // Set the time limit in milliseconds (e.g., 5000 milliseconds = 5 seconds)
+        var timeLimit = 5000000;
+
+         var routeUrl = "{{ url_for(url,contest_id=contest_id,Admin=Admin) }}";
+        // Function to perform the redirect
+        function redirectToNewPage() {
+
+            window.location.href = routeUrl; // Replace with your desired URL
+        }
+
+        // Start a timer to perform the redirect after the time limit
+        setTimeout(redirectToNewPage, timeLimit);
+    </script>
+</body>
+
+
+<style>
+    html {
+    background-color: #cadff5;
+    font-family: "Outfit", sans-serif;
+}
+body {
+    min-height: 200vh;
+    display: block;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.div {
+    width: 100%
+    background-color: white;
+    
+    border-radius: 25px;
+    text-align: center;
+}
+
+img {
+    width: 20.125rem;
+    border-radius: 25px;
+}
+
+.div2 {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+h1 {
+    font-size: 1.375rem;
+    font-weight: 700;
+}
+
+p {
+    font-size: 15px;
+    font-weight: 400;
+}
+    </style>

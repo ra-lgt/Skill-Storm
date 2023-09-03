@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="author" content="templatemo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <title>Liberty NFT Marketplace - Explore Listing Page</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for ('static',filename='/css/bootstrap.min.css')}}" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for ('static',filename='css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/templatemo-liberty-market.css') }}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/owl.css') }}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/Direction.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/animate.css') }}">
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+<!--
+
+TemplateMo 577 Liberty Market
+
+https://templatemo.com/tm-577-liberty-market
+
+-->
+  </head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo">
+                        <img src="{{url_for ('static',filename='/images/logo.png')}}" alt="">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li><a href="{{url_for('Home')}}">Home</a></li>
+                        <li><a href="{{url_for('explore',page_no=page_no)}}" class="active">Explore</a></li>
+                        
+
+                        <li><a href="{{url_for('create_contest')}}">Create Yours</a></li>
+                        
+                        <li><a href="{{url_for('account')}}">Your Account</a></li>
+                        <li><a href="{{url_for('message')}}">Messages</a></li>
+                        
+                    </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="page-heading">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h6>Skill Storm</h6>
+          <h2>Discover Some Top Contest</h2>
+          <span>Home > <a href="#">Explore</a></span>
+        </div>
+      </div>
+    </div>
+    <div class="featured-explore">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="owl-features owl-carousel">
+              <div class="item">
+                <div class="thumb">
+                  <img src="{{url_for ('static',filename='images/featured-01.jpg')}}" alt="" style="border-radius: 20px;">
+                  <div class="hover-effect">
+                    <div class="content">
+                      <h4>Triple Mutant Ape Bored</h4>
+                      <span class="author">
+                        <img src="{{url_for ('static',filename='images/author.jpg')}}" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
+                        <h6>Liberty Artist<br><a href="#">@libertyart</a></h6>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="thumb">
+                  <img src="{{url_for ('static',filename='images/featured-02.jpg')}}" alt="" style="border-radius: 20px;">
+                  <div class="hover-effect">
+                    <div class="content">
+                      <h4>Bored Ape Kennel Club</h4>
+                      <span class="author">
+                        <img src="{{url_for ('static',filename='images/author.jpg')}}" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
+                        <h6>Liberty Artist<br><a href="#">@libertyart</a></h6>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="thumb">
+                  <img src="{{url_for ('static',filename='images/featured-03.jpg')}}" alt="" style="border-radius: 20px;">
+                  <div class="hover-effect">
+                    <div class="content">
+                      <h4>Genesis Club by KMT</h4>
+                      <span class="author">
+                        <img src="{{url_for ('static',filename='images/author.jpg')}}" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
+                        <h6>Liberty Artist<br><a href="#">@libertyart</a></h6>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="thumb">
+                  <img src="{{url_for ('static',filename='images/featured-04.jpg')}}" alt="" style="border-radius: 20px;">
+                  <div class="hover-effect">
+                    <div class="content">
+                      <h4>Crypto Aurora Guy</h4>
+                      <span class="author">
+                        <img src="{{url_for ('static',filename='images/author.jpg')}}" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
+                        <h6>Liberty Artist<br><a href="#">@libertyart</a></h6>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="discover-items">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="section-heading">
+            <div class="line-dec"></div>
+            <h2>Discover Some Of Our <em>Contests</em>.</h2>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <form id="search-form" name="gs" method="POST" role="search" action="{{url_for('search_contest',page_no=1)}}">
+            <div class="row">
+              <div class="col-lg-4">
+                <fieldset>
+
+
+                  <!-- jjjjjjjjjjjjjjjjjjjjjjjkkkkj !-->
+                    <input type="text" name="keyword" id="search" class="searchText" placeholder="Type Something..." autocomplete="on" onkeyup="Search()">
+
+
+
+
+                </fieldset>
+
+              </div>
+              <div class="col-lg-3">
+                <fieldset>
+                    <select name="Category" class="form-select" aria-label="Default select example" id="chooseCategory" onchange="this.form.click()">
+                        <option selected>All Categories</option>
+                        <option type="checkbox" name="option1" value="Music">Music</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Photography">Photography</option>
+                        <option value="Gaming">Gaming</option>
+                        <option value="Fitness">Fitness</option>
+                    </select>
+                </fieldset>
+              </div>
+              
+              <div class="col-lg-2">                        
+                <fieldset>
+                    <button class="main-button">Search</button>
+                </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+        
+      
+        
+        
+       {% for i in range(start,end) %}
+       
+       
+        <div class="col-lg-3" id="itemContainer">
+          <div class="item">
+            
+            <div class="row">
+              <div class="col-lg-12">
+                <span class="author">
+                  {% if data['profile_url'][i] %}
+                  <img src="{{data['profile_url'][i]}}" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
+                  {% else %}
+
+                  <img src="{{url_for ('static',filename='images/author.jpg')}}" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
+                  {% endif %}
+                  
+                </span>
+               
+                <img src="{{data['URL'][i]}}" alt="Image absent" style="border-radius: 20px;">
+                
+                
+                <h4>{{data['title'][i]}}</h4>
+                
+              </div>
+              <div class="col-lg-12">
+                <div class="line-dec"></div>
+                <div class="row">
+                  <div class="col-6">
+                    <span>Price: <br> <strong>USD {{(2.5 * data['price'][i]|int)}}</strong></span>
+                  </div>
+                  <div class="col-6">
+                    <span>Hosted On: <br> <strong>{{data['Date'][i]}}</strong></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="main-button">
+                  <a href="{{ url_for('item_details', contest_id=data['contest_id'][i]) }}">View Details</a>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+{% endfor %}
+        
+      </div>
+    </div>
+  </div>
+
+<div class="containers round">
+  {% if prev %}
+            <div class="ctn">
+              <a href="{{url_for('explore',page_no=page_no-1)}}">
+                <h1 class="target">
+                    <div class="content">
+                        <div class="rounded"></div>
+                        <svg height="32px" class="arrow" style="enable-background:new 0 0 32 32;" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill="#161616" d="M28,14H8.8l4.62-4.62C13.814,8.986,14,8.516,14,8c0-0.984-0.813-2-2-2c-0.531,0-0.994,0.193-1.38,0.58l-7.958,7.958  C2.334,14.866,2,15.271,2,16s0.279,1.08,0.646,1.447l7.974,7.973C11.006,25.807,11.469,26,12,26c1.188,0,2-1.016,2-2  c0-0.516-0.186-0.986-0.58-1.38L8.8,18H28c1.104,0,2-0.896,2-2S29.104,14,28,14z"/></svg>
+                        <span class="title">Previous</span>
+                    </div>
+                </h1>
+              </a>
+            </div>
+
+            {% else %}
+            <div class="ctn">
+              <a href="javascript:void(0)">
+                <h1 class="target">
+                    <div class="content">
+                        <div class="rounded"></div>
+                        <svg height="32px" class="arrow" style="enable-background:new 0 0 32 32;" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <path fill="#6f42c1" d="M28,14H8.8l4.62-4.62C13.814,8.986,14,8.516,14,8c0-0.984-0.813-2-2-2c-0.531,0-0.994,0.193-1.38,0.58l-7.958,7.958  C2.334,14.866,2,15.271,2,16s0.279,1.08,0.646,1.447l7.974,7.973C11.006,25.807,11.469,26,12,26c1.188,0,2-1.016,2-2  c0-0.516-0.186-0.986-0.58-1.38L8.8,18H28c1.104,0,2-0.896,2-2S29.104,14,28,14z"/>
+</svg>
+
+
+                        <span class="title">Previous</span>
+                    </div>
+                </h1>
+              </a>
+            </div>
+
+{% endif %}
+{% if nexts %}
+            <div class="ctn">
+              <a href="{{url_for('explore',page_no=page_no+1)}}" disabled>
+                    <h1 class="target">
+                        <div class="content reversed" style="float:right">
+                                <div class="rounded"></div>
+                                <svg height="32px" class="arrow reverse" style="enable-background:new 0 0 32 32;" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill="#161616" d="M28,14H8.8l4.62-4.62C13.814,8.986,14,8.516,14,8c0-0.984-0.813-2-2-2c-0.531,0-0.994,0.193-1.38,0.58l-7.958,7.958  C2.334,14.866,2,15.271,2,16s0.279,1.08,0.646,1.447l7.974,7.973C11.006,25.807,11.469,26,12,26c1.188,0,2-1.016,2-2  c0-0.516-0.186-0.986-0.58-1.38L8.8,18H28c1.104,0,2-0.896,2-2S29.104,14,28,14z"/></svg>
+                           
+                           <span class="title">Next</span>
+
+                        </div>
+                    </h1>
+                  </a>
+            </div>
+
+            {% else %}
+            <div class="ctn" style="color: gray;text-decoration: none;">
+              <a href="javascript:void(0)">
+                    <h1 class="target">
+                        <div class="content reversed" style="float:right">
+                                <div class="rounded"></div>
+                                <svg height="32px" class="arrow reverse" style="enable-background:new 0 0 32 32;" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <path fill="gray" d="M28,14H8.8l4.62-4.62C13.814,8.986,14,8.516,14,8c0-0.984-0.813-2-2-2c-0.531,0-0.994,0.193-1.38,0.58l-7.958,7.958  C2.334,14.866,2,15.271,2,16s0.279,1.08,0.646,1.447l7.974,7.973C11.006,25.807,11.469,26,12,26c1.188,0,2-1.016,2-2  c0-0.516-0.186-0.986-0.58-1.38L8.8,18H28c1.104,0,2-0.896,2-2S29.104,14,28,14z"/>
+</svg>
+
+                           
+                           <<span class="title">Next</span>
+
+                        </div>
+                    </h1>
+                  </a>
+            </div>
+
+
+            {% endif %}
+    </div>
+
+ 
+  
+  <div class="top-seller">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="section-heading">
+            <div class="line-dec"></div>
+            <h2>Our Top Players of this Month.</h2>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="item">
+                <h4>1.</h4>
+                <img src="{{url_for ('static',filename='images/author.jpg')}}" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
+                <h6>Jerry<br><a href="#">$12,000</a></h6>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="item">
+                <h4>2.</h4>
+                <img src="{{url_for ('static',filename='images/author-02.jpg')}}" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
+                <h6>George Brandon<br><a href="#">$14,000</a></h6>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="item">
+                <h4>3.</h4>
+                <img src="{{url_for ('static',filename='images/author-03.jpg')}}" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
+                <h6>Johnny Mayson<br><a href="#">$26,000</a></h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="item">
+                <h4>4.</h4>
+                <img src="{{url_for ('static',filename='images/author-02.jpg')}}" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
+                <h6>Ajay<br><a href="#">$11,600</a></h6>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="item">
+                <h4>5.</h4>
+                <img src="{{url_for ('static',filename='images/author.jpg')}}" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
+                <h6>Ronald Martino<br><a href="#">$14,500</a></h6>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="item">
+                <h4>6.</h4>
+                <img src="{{url_for ('static',filename='images/author-02.jpg')}}" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
+                <h6>Charles Zein<br><a href="#">$7,400</a></h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="item">
+                <h4>7.</h4>
+                <img src="{{url_for ('static',filename='images/author.jpg')}}" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
+                <h6>Hardika<br><a href="#">$14,200</a></h6>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="item">
+                <h4>8.</h4>
+                <img src="{{url_for ('static',filename='images/author-03.jpg')}}" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
+                <h6>Jayasudha<br><a href="#">$15,000</a></h6>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="item">
+                <h4>9.</h4>
+                <img src="{{url_for ('static',filename='images/author.jpg')}}" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
+                <h6>David Walker<br><a href="#">$12,000</a></h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="item">
+                <h4>10.</h4>
+                <img src="{{url_for ('static',filename='images/author-02.jpg')}}" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
+                <h6>Selvakumar<br><a href="#">$16,800</a></h6>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="item">
+                <h4>11.</h4>
+                <img src="{{url_for ('static',filename='images/author.jpg')}}" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
+                <h6>Anthony Brown<br><a href="#">7.5 ETH or $15,400</a></h6>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="item">
+                <h4>12.</h4>
+                <img src="{{url_for ('static',filename='images/author-03.jpg')}}" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
+                <h6>Aswath<br><a href="#">$12,300</a></h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+ <script src="{{url_for ('static',filename='/js/jquery.min.js')}}"></script>
+  <script src="{{url_for ('static',filename='/js/bootstrap.min.js')}}"></script>
+
+  <script src="{{url_for ('static',filename='/js/isotope.min.js')}}"></script>
+  <script src="{{url_for ('static',filename='/js/owl-carousel.js')}}"></script>
+
+  <script src="{{url_for ('static',filename='/js/tabs.js')}}"></script>
+  <script src="{{url_for ('static',filename='/js/popup.js')}}"></script>
+  <script src="{{url_for ('static',filename='/js/custom.js')}}"></script>
+   <script src="{{url_for ('static',filename='/js/Direction.js')}}"></script>
+
+
+
+  </body>
+</html>

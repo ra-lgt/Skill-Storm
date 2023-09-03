@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="author" content="templatemo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+    <title>Liberty Template - NFT Item Detail Page</title>
+
+    <link href="{{ url_for ('static',filename='/css/bootstrap.min.css')}}" rel="stylesheet">
+  
+     
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for ('static',filename='css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/templatemo-liberty-market.css') }}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/owl.css') }}">
+    
+     <link rel="stylesheet" href="{{ url_for ('static',filename='css/popup.css') }}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/animate.css') }}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/notification.css') }}">
+    
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+<!--
+
+TemplateMo 577 Liberty Market
+
+https://templatemo.com/tm-577-liberty-market
+
+-->
+  </head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo">
+                        <img src="assets/images/logo.png" alt="">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li><a href="{{url_for('Home')}}">Home</a></li>
+                        <li><a href="{{url_for('explore',page_no=1)}}">Explore</a></li>
+                        
+                        
+                        <li><a href="{{url_for('create_contest')}}">Create Yours</a></li>
+                        <li><a href="{{url_for('account')}}">Your Account</a></li>
+                        <li><a href="{{url_for('message')}}">Messages</a></li>
+                    </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="page-heading normal-space">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h6>SKILL STORM</h6>
+          <h2>View Contest Details</h2>
+          <span>Home > <a href="#">Contest Details</a></span>
+          <div class="buttons">
+            <div class="main-button">
+              <a href="{{url_for('explore',page_no=1)}}">Explore Our Contest</a>
+            </div>
+            <div class="border-button">
+              <a href="{{url_for('create_contest')}}">Create Your Contest</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="item-details-page">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="section-heading">
+            <div class="line-dec"></div>
+            <h2>View Details <em>For Contest</em> Here.</h2>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="left-image">
+            <img src="{{data.URL[0]}}" alt="image" style="border-radius: 20px;">
+          </div>
+        </div>
+        <div class="col-lg-5 align-self-center">
+          <h4>{{data.title[0]}}</h4>
+          {% if not Admin %}
+          <span class="author">
+            {% if data['profile_url'][0] %}
+            <img src="{{data['profile_url'][0]}}" alt="" style="max-width: 50px; border-radius: 50%;">
+            {% else %}
+            <img src="{{url_for('static',filename='/images/author.jpg')}}" alt="" style="max-width: 50px; border-radius: 50%;">
+            {% endif %}
+
+            <h6>{{data.username[0]}}<br><a href="#">@{{email}}</a></h6>
+
+          </span>
+          {% endif %}
+          <p>{{data.Description[0]}}</p>
+          <div class="row">
+            <div class="col-3">
+              {% if Admin %}
+              <span class="bid">
+                Price<br><strong>{{data.price[0]}}</strong><br>
+              </span>
+              {% else %}
+              <span class="bid">
+                Fees<br><strong>{{data.price[0]}}</strong><br>
+              </span>
+              {% endif %}
+            </div>
+            <div class="col-4">
+              <span class="owner">
+                Owner<br><strong>{{data.username[0]}}</strong>
+              </span>
+            </div>
+            <div class="col-5">
+              <span class="ends">
+                Hosted Date<br><strong>{{data.Date[0]}}</strong>
+              </span>
+            </div>
+          </div>
+
+
+         <!-- <form action="{{url_for('join_contest',contest_id=contest_id,Admin=Admin)}}">
+           
+            <button type="submit" id="form-submit" class="main-button">JOIN</button>
+
+
+            <br>
+            <br>
+            
+          </form>!-->
+          <div class="icon-button">
+                    <a href="#popup1"><button type="submit" id="form-submit" class="main-button">JOIN</button></a>
+                  </div>
+                    <div id="popup1" class="overlay">
+                    <div class="popup">
+                      <h2>Choose payment</h2>
+                      <a class="close" href="#">&times;</a>
+                      <br>
+                      <div class="content">
+                        <form action="{{url_for('upi_payment',contest_id=contest_id,Admin=Admin)}}">
+                        <button ><img src="{{url_for('static',filename='images/UPI.jpg')}}" height="75px" width="50px"></button>
+                      </form>
+                        <br>
+                        <h2 align="center">OR</h2>
+                        <br>
+                        <form action="{{url_for('bank_payment',contest_id=contest_id,Admin=Admin)}}">
+                        <button><img src="{{url_for('static',filename='images/Bank.png')}}"height="100px" width="50px"></button>
+                      </form>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <br>
+                  <br>
+
+           <a href="{{url_for('account',view_email=email,view_username=data.username[0])}}"><button type="submit" id="form-submit" class="main-button">View Profile</button></a>
+           <br>
+           <br>
+           {% if not Admin %}
+            <p><strong>*NOTE:</strong> Your money will be refunded if the contest is cancelled (Not for free contest)</p>
+            {% endif %}
+
+
+
+
+           
+        </div>
+       
+    </div>
+
+  </div>
+
+</div>
+
+
+  <div class="create-nft">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="section-heading">
+            <div class="line-dec"></div>
+            <h2>Create Your Contest & Put It On The Market.</h2>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="main-button">
+            <a href="create.html">Create Contest</a>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="item first-item">
+            <div class="number">
+              
+            </div>
+            <div class="icon">
+              <img src="{{url_for ('static',filename='/images/icon-02.png')}}" alt="">
+            </div>
+            <h4>Host Contest</h4>
+            <p>Sign in to the web and unlock a world of possibilities! With our platform, you can create a captivating contest, inviting talented individuals from all corners of the globe to participate</p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="item second-item">
+            <div class="number">
+              
+            </div>
+            <div class="icon">
+              <img src="{{url_for ('static',filename='/images/icon-04.png')}}" alt="">
+            </div>
+            <h4>Compete</h4>
+            <p>Ready to prove your mettle in your specific domain? Compete against others with the same expertise as you and showcase your skills like never before!</p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="item">
+            <div class="icon">
+              <img src="{{url_for ('static',filename='/images/icon-06.png')}}" alt="">
+            </div>
+            <h4>Collect Exciting Rewards</h4>
+            <p>Showcasing your skills has never been more rewarding – earn exciting prizes and cash prizes with each triumph</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+ <script src="{{url_for ('static',filename='/js/jquery.min.js')}}"></script>
+  <script src="{{url_for ('static',filename='/js/bootstrap.min.js')}}"></script>
+
+  <script src="{{url_for ('static',filename='/js/isotope.min.js')}}"></script>
+  <script src="{{url_for ('static',filename='/js/owl-carousel.js')}}"></script>
+
+  <script src="{{url_for ('static',filename='/js/tabs.js')}}"></script>
+  <script src="{{url_for ('static',filename='/js/popup.js')}}"></script>
+  <script src="{{url_for ('static',filename='/js/custom.js')}}"></script>
+ 
+  
+
+    
+  </body>
+</html>

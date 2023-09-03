@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <style>
+.tag-container {
+            display: flex;
+            justify-content: flex-end;
+             flex-wrap: wrap;
+        }
+
+        .tag {
+            margin: 0;
+            margin-right: 10px;
+            padding-left: 20px;
+            color: white;
+        }
+
+
+    </style>
+
+    <meta charset="utf-8">
+    <meta name="author" content="templatemo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <title>Liberty NFT - Author Detail Page</title>
+
+    <!-- Bootstrap core CSS -->
+     <link href="{{ url_for ('static',filename='/css/bootstrap.min.css')}}" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for ('static',filename='css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/templatemo-liberty-market.css') }}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/owl.css') }}">
+    
+     <link rel="stylesheet" href="{{ url_for ('static',filename='css/popup.css') }}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/animate.css') }}">
+    <!--<link rel="stylesheet" href="{{ url_for ('static',filename='css/account_contest.css') }}">!-->
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<!--
+
+TemplateMo 577 Liberty Market
+
+https://templatemo.com/tm-577-liberty-market
+
+-->
+  </head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo">
+                        <img src="{{url_for ('static',filename='/images/logo.png')}}" alt="">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li><a href="{{url_for('Home')}}">Home</a></li>
+                        <li><a href="{{url_for('explore',page_no=1)}}">Explore</a></li>
+                        
+
+                        <li><a href="{{url_for('create_contest')}}">Create Yours</a></li>
+                        
+                        <li><a href="{{url_for('account')}}" class="active">Your Account</a></li>
+                        <li><a href="{{url_for('message')}}">Messages</a></li>
+                    </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="page-heading normal-space">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h6>Account Details</h6>
+          <h2>View Details For Account</h2>
+          <span>Home > <a href="#">Author</a></span>
+          <div class="buttons">
+            <div class="main-button">
+              <a href="{{url_for('explore',page_no=1)}}">Explore Our Items</a>
+            </div>
+            <div class="border-button">
+              <a href="{{url_for('create_contest')}}">Create Contest</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="author-page">
+    <div class="container">
+
+       
+      <div class="row">
+
+       
+
+  
+
+
+        <div class="col-lg-6" >
+
+
+          <div class="author">
+            
+            {% if data.url %}
+            <img src="{{data.url}}" alt="" style="border-radius: 50%; max-width: 170px;">
+            {% else %}
+            <img src="{{url_for ('static',filename='/images/author.jpg')}}" alt="" style="border-radius: 50%; max-width: 170px;">
+            {% endif %}
+
+            <h4>{{data.username}} <br> <a href="#">@{{data.email}}</a></h4>
+            
+          </div>
+
+
+        </div>
+
+   
+    
+{% if view %}
+
+        <form method="post" enctype="multipart/form-data" action="{{url_for('profile_picture')}}"style="padding-right: 1000px;">
+  <label for="apply"><input type="file" name="profile_picture" id="apply" accept="image/*,.pdf">Change Profile</label>
+<button class="round-button">Upload</button>
+</form> 
+<p>*NOTE click on <strong>Change Profile</strong> and click <strong>Upload</strong> your name of the file will not be shown for security purpose</p>
+{% endif %} 
+<br>
+<br>
+<h5>Total Contest : {{count}}</h5>
+<br>
+<br>
+{% if view %}
+<h5>Referal ID : {{data['referal_id']}}</h5>
+{% endif %}
+<br>
+<br>
+
+<br>
+<br>
+<br>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="0" height="0">
+  <defs>
+    <filter id="goo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+      <feBlend in="SourceGraphic" in2="goo" />
+    </filter>
+  </defs>
+
+</svg>
+
+<div style="padding-left: 100px;" class="demo">
+  <div class="demo__buttons">
+    <div class="demo__social-btn-4 demo__social-btn" onclick="open_whatsapp()"><i class="fa fa-whatsapp"></i></div>
+    <div class="demo__social-btn-3 demo__social-btn" onclick="open_instagram()"><i class="fa fa-instagram"></i></div>
+    <div class="demo__social-btn-2 demo__social-btn" onclick="open_facebook()"><i class="fa fa-facebook"></i></div>
+    <div class="demo__social-btn-1 demo__social-btn" onclick="open_twitter()"><i class="fa fa-twitter"></i></div>
+    <div class="demo__open-btn"><i class="fa fa-share-alt"></i></div>
+  </div>
+
+</div>
+  
+   
+           <div class="col-lg-12">
+          <div class="collections">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="section-heading">
+                  
+                  <h2 style="text-align:center;">{{data.username}}’s <em>Contests</em></h2>
+                </div>
+              </div>
+              
+            </div> 
+          </div>
+        </div>
+        {% if count==0 %}
+  <h1>0</h1>
+  {% else %}
+    
+
+        <div class="TOP" id="top">
+<div class="containers"> 
+
+ 
+  {% for i in range(count) %}
+  {% if i<5  %}
+  
+  <div>
+    
+    <div class="content" >
+
+      <h2 style="text-align: center;">{{data['title'][i]}}</h2>
+      <p>Type: {{data['Type'][i]}}</p>
+      <p>Date: {{data['Date'][i]}}</p>
+      <p>Price: {{(2.5 * data['price'][i]|int)}}</p>             
+       
+    </div>
+
+
+  </div>
+
+{% endif %}
+  {% endfor %}
+
+   
+</div>
+</div>
+<div id="new_container">
+  
+</div>
+
+{% if count>5 %}
+
+<div class="border-button">
+  <a href="{{url_for('mycontest')}}">View All</a>
+</div>
+
+ {% endif %}
+{% endif %}
+
+
+      </div>
+    </div>
+  </div>
+
+  <div class="create-nft">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="section-heading">
+            <div class="line-dec"></div>
+            <h2>Create Your Contest & Put It On The Market.</h2>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="main-button">
+            <a href="{{url_for('create_contest')}}">Create Contest</a>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="item first-item">
+            <div class="number">
+              
+            </div>
+            <div class="icon">
+              <img src="{{url_for ('static',filename='/images/icon-02.png')}}" alt="">
+            </div>
+            <h4>Host Contest</h4>
+            <p>Sign in to the web and unlock a world of possibilities! With our platform, you can create a captivating contest, inviting talented individuals from all corners of the globe to participate</p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="item second-item">
+            <div class="number">
+              
+            </div>
+            <div class="icon">
+              <img src="{{url_for ('static',filename='/images/icon-04.png')}}" alt="">
+            </div>
+            <h4>Compete</h4>
+            <p>Ready to prove your mettle in your specific domain? Compete against others with the same expertise as you and showcase your skills like never before!</p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="item">
+            <div class="icon">
+              <img src="{{url_for ('static',filename='/images/icon-06.png')}}" alt="">
+            </div>
+            <h4>Collect Exciting Rewards</h4>
+            <p>Showcasing your skills has never been more rewarding – earn exciting prizes and cash prizes with each triumph</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+ <script src="{{url_for ('static',filename='/js/jquery.min.js')}}"></script>
+  <script src="{{url_for ('static',filename='/js/bootstrap.min.js')}}"></script>
+
+  <script src="{{url_for ('static',filename='/js/isotope.min.js')}}"></script>
+  <script src="{{url_for ('static',filename='/js/owl-carousel.js')}}"></script>
+
+  <script src="{{url_for ('static',filename='/js/tabs.js')}}"></script>
+  <script src="{{url_for ('static',filename='/js/popup.js')}}"></script>
+  <script src="{{url_for ('static',filename='/js/custom.js')}}"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>  
+  </body>
+
+<script>
+  function open_instagram(){
+    var instagramURL = "https://www.instagram.com";
+
+  // Open Instagram profile in a new tab
+  window.open(instagramURL);
+  }
+  function open_whatsapp(){
+    var message = "Hey! I'm using this awesome service and I thought you might like it too. Sign up with my referral code {{data['referal_id']}} and we'll both get rewarded! 🎉`;";
+
+  // Create a WhatsApp share URL with the predefined message
+  var whatsappURL = "https://api.whatsapp.com/send?text=" + encodeURIComponent(message);
+
+  // Open WhatsApp with the predefined message
+  window.open(whatsappURL);
+
+}
+function open_facebook() {
+  // URL to open the user's Facebook page
+  var facebookURL = "https://www.facebook.com/";
+
+  // Open the user's Facebook page
+  window.open(facebookURL);
+}
+function open_twitter() {
+  // Your predefined message
+   var message = "Hey! I'm using this awesome service and I thought you might like it too. Sign up with my referral code {{data['referal_id']}} and we'll both get rewarded! 🎉`;";
+
+  // URL to open Twitter with a predefined message
+  var twitterURL = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(message);
+
+  // Open Twitter with the predefined message
+  window.open(twitterURL);
+}
+</script>
+
+  <script>
+    "use strict";
+
+$(document).ready(function() {
+  const $buttons = $(".demo__buttons");
+  const $toggle = $(".demo__open-btn");
+  let delay = 200;
+  let steps = [];
+  let open = false;
+  
+  let curStep = 0;
+
+  for (let i = 0; i <= 3; i++) {
+    steps[i] = "demo__step-" + i;
+  }
+
+  function setStep(index) {    
+    $buttons.removeClass("step-1 step-0 step-3 step-2").addClass("step-" + curStep);   
+  }
+  
+  let lastTimeout;
+
+  function animate() {
+    if (curStep >= 4) {
+      curStep = 0;
+      return;
+    }
+
+    open = true;
+    setStep(curStep);    
+    curStep++;
+    lastTimeout = setTimeout(animate, delay);
+  }
+
+  $toggle.on("click", function() {
+    if (!open) animate();
+    else {
+      $buttons.removeClass("step-1 step-0 step-3 step-2");
+      clearTimeout(lastTimeout);
+      open = false;
+      curStep = 0;
+    }
+  });
+});
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+
+
+
+.demo__buttons {
+  
+  
+  
+  transform: translate(-100px, -100px);
+  filter: url("#goo");
+}
+.demo__buttons.step-0 .demo__social-btn-1, .demo__buttons.step-0 .demo__social-btn-2, .demo__buttons.step-0 .demo__social-btn-3, .demo__buttons.step-0 .demo__social-btn-4 {
+  transform: translate3d(-50px, -50px, 0);
+}
+.demo__buttons.step-1 .demo__social-btn-1 {
+  transform: translate3d(-50px, -50px, 0);
+}
+.demo__buttons.step-1 .demo__social-btn-2, .demo__buttons.step-1 .demo__social-btn-3, .demo__buttons.step-1 .demo__social-btn-4 {
+  transform: translate3d(-50px, 50px, 0);
+}
+.demo__buttons.step-2 .demo__social-btn-1 {
+  transform: translate3d(-50px, -50px, 0);
+}
+.demo__buttons.step-2 .demo__social-btn-2 {
+  transform: translate3d(-50px, 50px, 0);
+}
+.demo__buttons.step-2 .demo__social-btn-3, .demo__buttons.step-2 .demo__social-btn-4 {
+  transform: translate3d(50px, 50px, 0);
+}
+.demo__buttons.step-3 .demo__social-btn-1 {
+  transform: translate3d(-50px, -50px, 0);
+}
+.demo__buttons.step-3 .demo__social-btn-2 {
+  transform: translate3d(-50px, 50px, 0);
+}
+.demo__buttons.step-3 .demo__social-btn-3 {
+  transform: translate3d(50px, 50px, 0);
+}
+.demo__buttons.step-3 .demo__social-btn-4 {
+  transform: translate3d(50px, -50px, 0);
+}
+.demo__social-btn {
+  position: absolute;
+  left: 65px;
+  top: 65px;
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  line-height: 70px;
+  font-size: 30px;
+  background: #6f42c1;
+  color: #261758;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.demo__social-btn:hover {
+  color: #106279;
+  box-shadow: 0 0 15px #6f42c1;
+}
+.demo__open-btn {
+  position: absolute;
+  left: 65px;
+  top: 65px;
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  line-height: 70px;
+  font-weight: 700;
+  font-size: 30px;
+  font-family: sans-serif;
+  background: #6f42c1;
+  color: #261758;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.demo__open-btn:hover {
+  color: #106279;
+  box-shadow: 0 0 15px #6f42c1;
+}
+
+.about-me {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  color: #6f42c1;
+  font-family: Roboto, Arial, sans-serif;
+}
+.about-me a {
+  color: white;
+}
+.about-me a:hover {
+  color: #6666ff;
+}
+  </style>
+
+  
+  <style>
+    label {
+  display: block;
+  width: 60vw;
+  max-width: 300px;
+  margin: 0 auto;
+  background-color: #6f42c1;;
+  border-radius: 2px;
+  font-size: 1em;
+  line-height: 2.5em;
+  text-align: center;
+}
+
+label:hover {
+  background-color: white;
+}
+
+label:active {
+  background-color: mediumaquamarine;
+}
+
+input {
+  border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px; 
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+
+}
+.round-button {
+    margin-top: 10px;
+    background-color: #6f42c1;
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+
+}
+
+.round-button:hover {
+    background-color: white;
+    transition: background-color 0.3s ease;
+
+
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap");
+.TOP {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.TOP {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #212529;
+  font-family: "Ubuntu Mono", monospace;
+  font-weight: 400;
+}
+
+.containers {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 500px;
+  gap: 10px;
+}
+.containers > div {
+  flex: 0 0 220px;
+  border-radius: 0.5rem;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+  box-shadow: 1px 5px 15px #1e0e3e;
+  position: relative;
+  overflow: hidden;
+}
+
+.containers > div .content {
+  font-size: 1.5rem;
+  color: #fff;
+  display: flex;
+  
+  padding: 15px;
+  opacity: 0;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-end;
+  background: #02022e;
+  background: linear-gradient(0deg, rgba(2, 2, 46, 0.6755077031) 0%, rgba(255, 255, 255, 0) 100%);
+  transform: translatey(100%);
+  transition: opacity 0.5s ease-in-out, transform 0.5s 0.2s;
+  visibility: hidden;
+}
+{% for i in range(count) %}
+.containers > div:nth-of-type({{ i + 1 }}) {
+  background: url("{{ data['image'][i] }}") no-repeat 50%/cover;
+}
+{% endfor %}
+
+.containers > div .content span {
+  display: block;
+  margin-top: 5px;
+  font-size: 1.2rem;
+}
+.containers > div:hover {
+  flex: 0 0 450px;
+  box-shadow: 1px 3px 15px #7645d8;
+  transform: translatey(-30px);
+}
+.containers > div:hover .content {
+  opacity: 1;
+  transform: translatey(0%);
+  visibility: visible;
+}
+
+
+</style>
+ 
+</html>

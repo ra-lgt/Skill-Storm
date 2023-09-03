@@ -1,0 +1,39 @@
+<html>
+<head>
+<link rel="stylesheet" href="{{url_for('static',filename='css/push_notifications.css')}}">
+</head>
+
+
+<body>
+<div class='container'>
+  
+  {% for i in range(count) %}
+ 
+  <div class='card'>
+    {% if data['URL'][i] %}
+    <img src="{{data['URL'][i]}}">
+    {% else %}
+    <img src="{{url_for ('static',filename='/images/author.jpg')}}">
+    {% endif %}
+    <div class='card-body'>
+      <div class='card-text'>
+
+        <form method="post" action="{{url_for('push_notifications',username=data['username'][i])}}">
+        <h3 name="username">UserName : {{data['username'][i]}}</h3>
+        <p>Phone : {{data['phone'][i]}}</p>
+        <p>Email : {{data['email'][i]}}</p>
+      </div>
+      <input name="notification" type="text" placeholder="Type to notify....">
+      <br>
+
+      <button>Send</button>
+    </form>
+  </div>
+    
+
+  </div>
+
+  {% endfor %}
+</div>
+</body>
+</html>

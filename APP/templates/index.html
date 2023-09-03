@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="author" content="templatemo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
+
+    <title>Liberty NFT Marketplace - HTML CSS Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for ('static',filename='/css/bootstrap.min.css')}}" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for ('static',filename='css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/templatemo-liberty-market.css') }}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/owl.css') }}">
+    
+     <link rel="stylesheet" href="{{ url_for ('static',filename='css/popup.css') }}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/animate.css') }}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/notification.css') }}">
+    
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+
+<!--
+
+TemplateMo 577 Liberty Market
+
+https://templatemo.com/tm-577-liberty-market
+
+-->
+  </head>
+
+<body>
+
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo">
+                      
+                      <img src="{{url_for('static',filename='images/skill.jpg')}}" height="80px" width="50">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                      {% if data.session %}
+                        <li><a href="index.html" class="active">Home</a></li>
+
+                        <li><a href="{{ url_for('explore',page_no=1) }}">Explore</a></li>
+
+                        
+
+                        <li><a href="{{url_for('create_contest')}}">Create Yours</a></li>
+                        
+                        <li><a href="{{url_for('account')}}">
+
+                          
+                        Yours Account</a></li>
+                       
+                        <li><a href="{{url_for('message')}}">Messages</a></li>
+                        
+
+                        <ul class="notification-drop">
+                      
+    <li class="item">
+      <i class="fa fa-bell-o notification-bell" aria-hidden="true"></i> <span class="btn__badge pulse-button ">{{count}}</span>     
+      <ul>
+        {% for i in notification.data %}
+        <li>{{i}}</li>
+        <br>
+        {% endfor %}
+      </ul>
+    </li>
+  </ul>
+                    </ul>
+                    {% endif %}   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <!-- ***** Main Banner Area Start ***** -->
+  <div class="main-banner" >
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 align-self-center">
+          <div class="header-text">
+            <h4>SKILL STORM</h4>
+            <h2>Create, Compete &amp; Collect Rewards</h2>
+            <p>Unleash Your Genius, Win Epic Rewards! Embark on an exhilarating journey to showcase your full potential in your expertise. Ignite your passion, conquer challenges, and stand out as the true master of your craft. The grandest rewards await those who dare to seize this ultimate opportunity. Join the ranks of the elite and let your brilliance shine!</p>
+            <div class="buttons">
+              <div class="border-button">
+                <a href="{{url_for('mycontest')}}">mycontest</a>
+              </div>
+
+              {% if not data.session %}
+              <div class="main-button">
+                <a href="{{url_for('signup_login')}}">SignUp/LogIn</a>
+              </div>
+              {% else %}
+              <div class="main-button">
+                <a href="{{url_for('logout')}}">Logout</a>
+              </div>
+              {% endif %}
+
+
+
+
+
+
+
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 offset-lg-1">
+          <div class="owl-banner owl-carousel">
+            <div class="item">
+              <img src="{{url_for ('static',filename='/images/banner-01.png')}}" alt=""><
+            </div>
+            <div class="item">
+              <img src="{{url_for ('static',filename='/images/banner-02.png')}}" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Main Banner Area End ***** -->
+<!-- THIS IS GOING TO BE A MAGENTO BUTTON -->
+
+
+
+<div class="wrapper" style="background-image: url('../static/images/dark-bg.jpg');">
+  <div class="box">
+    <img src="{{url_for('static',filename='images/refer_and_earn.jpg')}}" height="300px" width="50px">
+  </div>
+  <style>
+    @import url("https://fonts.googleapis.com/css?family=Raleway:400");
+
+
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 90deg;
+  inherits: true;
+}
+
+@property --gradX {
+  syntax: '<percentage>';
+  initial-value: 50%;
+  inherits: true;
+}
+
+@property --gradY {
+  syntax: '<percentage>';
+  initial-value: 0%;
+  inherits: true;
+}
+
+
+p {
+  margin: 0;
+}
+
+:root {
+  --d: 2500ms;
+  --angle: 90deg;
+  --gradX: 100%;
+  --gradY: 50%;
+  --c1: rgba(168, 239, 255, 1);
+  --c2: rgba(168, 239, 255, 0.1);
+}
+
+.wrapper {
+  min-width: min(40rem, 100%);
+}
+
+.box {
+  font-size: 3vw;
+  margin: max(1rem, 3vw);
+  border: 0.35rem solid;
+  position: relative;
+  
+  border-image: conic-gradient(from var(--angle), var(--c2), var(--c1) 0.1turn, var(--c1) 0.15turn, var(--c2) 0.25turn) 30;
+  animation: borderRotate var(--d) linear infinite forwards;
+}
+
+.box:nth-child(2) {
+  border-image: radial-gradient(ellipse at var(--gradX) var(--gradY), var(--c1), var(--c1) 10%, var(--c2) 40%) 30;
+  animation: borderRadial var(--d) linear infinite forwards;
+}
+
+@keyframes borderRotate {
+  100% {
+    --angle: 420deg;
+  }
+}
+
+@keyframes borderRadial {
+  20% {
+    --gradX: 100%;
+    --gradY: 50%;
+  }
+  40% {
+    --gradX: 100%;
+    --gradY: 100%;
+  }
+  60% {
+    --gradX: 50%;
+    --gradY: 100%;
+  }
+  80% {
+    --gradX: 0%;
+    --gradY: 50%;
+  }
+  100% {
+    --gradX: 50%;
+    --gradY: 0%;
+  }
+}
+  </style>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <div class="categories-collections" style="padding-top: 400px;">
+
+
+
+<div class="marquee">
+  <div class="marquee_group" style="color: purple;">
+    <h4 style="color : #7453fc;">Next Free Contest in</h4>
+    <h4 aria-hidden="true" style="color : #7453fc;">Next Free Contest in 27th August</h4>
+    <h4 aria-hidden="true" style="color : #7453fc;">Next Free Contest in 27th August</h4>
+    <h4 aria-hidden="true" style="color : #7453fc;">Next Free Contest in 27th August</h4>
+    <h4 aria-hidden="true" style="color : #7453fc;">Next Free Contest in 27th August</h4>
+  </div>
+
+  
+</div>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Corben:wght@700&display=swap");
+
+.marquee {
+  --duration: 15s;
+  --gap: var(--space);
+--space: 2rem;
+
+  display: grid;
+  align-content: center;
+  overflow: hidden;
+  gap: var(--space);
+  width: 100%;
+  font-family: "Corben", system-ui, sans-serif;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: 2.4rem;
+}
+
+.marquee_group {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: var(--gap);
+  min-width: 100%;
+  animation: scroll var(--duration) linear infinite;
+}
+
+
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+</style>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="categories">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="section-heading">
+                  <div class="line-dec"></div>
+                  <h2>Browse Through Our <em>Categories</em> Here.</h2>
+                </div>
+              </div>
+              <div class="col-lg-2 col-sm-6">
+                <div class="item">
+                  <div class="icon">
+                    <img src="{{url_for ('static',filename='/images/icons/technology.png')}}" alt="">
+                  </div>
+                  <h4>Technology</h4>
+                  <div class="icon-button">
+                    <a href="#popup1"><i class="fa fa-angle-right"></i></a>
+                  </div>
+                    <div id="popup1" class="overlay">
+                    <div class="popup">
+                      <h2>Technology</h2>
+                      <a class="close" href="#">&times;</a>
+                      <div class="content">
+                        These are the some technology based contest you can host this is for example you can host other than this also :)<br>
+                        1)Front-end Development <br>
+                        2)web Designing<br>
+                        3)Backend-development<br>
+                        4)Machine-Learning<br>
+                        5)Competitive coder<br>
+                        6)Wordpress<br>
+                        7)Blockchain<br>
+                        8)Game development<br>
+                        9)software development<br>
+                        Kindly read how it works section for better understanding
+                      </div>
+                    </div>
+                  </div>
+                                  
+              </div>
+              </div>
+              <div class="col-lg-2 col-sm-6">
+                <div class="item">
+                  <div class="icon">
+                    <img src="{{url_for ('static',filename='/images/icons/gaming.png')}}" alt="">
+                  </div>
+                  <h4>Gaming</h4>
+                  <div class="icon-button">
+                    <a href="#popup2"><i class="fa fa-angle-right"></i></a>
+                  </div>
+                  <div id="popup2" class="overlay">
+                  <div class="popup">
+                    <h2>Gaming</h2>
+                    <a class="close" href="#">&times;</a>
+                    <div class="content">
+                      These are the some gaming based contest you can host this is for example you can host other than this also :)<br>
+                      1)PUBG<br>
+                      2)BGMI<br>
+                      3)free fire<br>
+                      4)clash of clans<br>
+                      5)clash royale<br>
+                      6)BombSquad<br>
+                      7)Call of Duty<br>
+                      Kindly read how it works section for better understanding
+
+                    </div>
+                  </div>
+                </div>
+                </div>
+              </div>
+              <div class="col-lg-2 col-sm-6">
+                <div class="item">
+                  <div class="icon">
+                    <img src="{{url_for ('static',filename='/images/icons/editing.png')}}" alt="">
+                  </div>
+                  <h4>Editing</h4>
+                  <div class="icon-button">
+                    <a href="#popup3"><i class="fa fa-angle-right"></i></a>
+                  </div>
+
+                  <div id="popup3" class="overlay">
+                  <div class="popup">
+                    <h2>Editing</h2>
+                    <a class="close" href="#">&times;</a>
+                    <div class="content">
+                      These are the some gaming based contest you can host this is for example you can host other than this also :)<br>
+                      1)Video Editing<br>
+                      2)Photo Editing<br>
+                      3)Free Sketch<br>
+                      4)Rough hand drawing<br>
+                      5)Coloring<br>
+                      6)Meme Creators<br>
+                      Kindly read how it works section for better understanding
+
+                    </div>
+                  </div>
+                </div>
+
+                </div>
+              </div>
+              <div class="col-lg-2 col-sm-6">
+                <div class="item">
+                  <div class="icon">
+                    <img src="{{url_for ('static',filename='/images/icons/photography.png')}}" alt="">
+                  </div>
+                  <h4>Photography</h4>
+                  <div class="icon-button">
+                    <a href="#popup4"><i class="fa fa-angle-right"></i></a>
+                  </div>
+
+
+
+                  <div id="popup4" class="overlay">
+                  <div class="popup">
+                    <h2>Photography</h2>
+                    <a class="close" href="#">&times;</a>
+                    <div class="content">
+                      These are the some gaming based contest you can host this is for example you can host other than this also :)<br>
+                      1)Wildlife Photography<br>
+                      2)Nature Photography<br>
+                      3)Portrait Photography<br>
+                      4)Street Photography<br>
+                      5)Black and White Photography<br>
+                      6)Documentary Photography<br>
+                      Kindly read how it works section for better understanding
+
+                    </div>
+                  </div>
+                </div>
+
+                </div>
+              </div>
+              <div class="col-lg-2 col-sm-6">
+                <div class="item">
+                  <div class="icon">
+                    <img src="{{url_for ('static',filename='/images/icons/fitness.png')}}" alt="">
+                  </div>
+                  <h4>Fitness</h4>
+                  <div class="icon-button">
+                    <a href="#popup5"><i class="fa fa-angle-right"></i></a>
+                  </div>
+
+
+                  <div id="popup5" class="overlay">
+                  <div class="popup">
+                    <h2>Fitness</h2>
+                    <a class="close" href="#">&times;</a>
+                    <div class="content">
+                      These are the some gaming based contest you can host this is for example you can host other than this also :)<br>
+                      1)Yoga and Flexibility<br>
+                      2)Bodyweight Fitness<br>
+                      3)Sports-Specific Training<br>
+                      Kindly read how it works section for better understanding
+
+                    </div>
+                  </div>
+                </div>
+
+
+
+                </div>
+              </div>
+              <div class="col-lg-2 col-sm-6">
+                <div class="item">
+                  <div class="icon">
+                    <img src="{{url_for ('static',filename='/images/icons/music.png')}}" alt="">
+                  </div>
+                  <h4>Music</h4>
+                  <div class="icon-button">
+                    <a href="#popup6"><i class="fa fa-angle-right"></i></a>
+                  </div>
+
+                    <div id="popup6" class="overlay">
+                  <div class="popup">
+                    <h2>Music or Singing</h2>
+                    <a class="close" href="#">&times;</a>
+                    <div class="content">
+                      These are the some gaming based contest you can host this is for example you can host other than this also :)<br>
+                      1)Music Genres<br>
+                      2)Music Technology<br>
+                      3)Music Performanceg<br>
+                      4)Harmony Singing<br>
+                      Kindly read how it works section for better understanding
+
+                    </div>
+                  </div>
+                </div>
+
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="collections">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="section-heading">
+                  <div class="line-dec"></div>
+                  <h2>Explore Some Hot <em>Contest</em> here</h2>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="owl-collection owl-carousel">
+                 
+                  
+                  {% for i in range(free_count) %}
+                  <div class="item">
+                    <img src="{{free_contest['URL'][i]}}" alt="">
+                    <div class="down-content">
+                      <h4></h4>
+                      <span class="collection">Title:<br><strong>{{free_contest['title'][i]}}</strong></span>
+                      <span class="category">Category:<br><strong>{{free_contest['options'][i]}}</strong></span>
+                      <span class="collection">Price:<br><strong>USD{{free_contest['price'][i]}}</strong></span>
+                      <span class="category">Entry_fee:<br><strong>FREE</strong></span>
+                      <div class="main-button">
+                        <a href="{{url_for('free_contest_details',contest_id=free_contest['id'][i])}}">View Details</a>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+
+                </div>
+              </div>
+            </div> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="create-nft">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="section-heading">
+            <div class="line-dec"></div>
+            <h2>Create Your Contest & Put It On The Market.</h2>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="main-button">
+            <a href="{{url_for('create_contest')}}">Create Contest</a>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="item first-item">
+            <div class="number">
+              
+            </div>
+            <div class="icon">
+              <img src="{{url_for ('static',filename='/images/icon-02.png')}}" alt="">
+            </div>
+            <h4>Host Contest</h4>
+            <p>Sign in to the web and unlock a world of possibilities! With our platform, you can create a captivating contest, inviting talented individuals from all corners of the globe to participate</p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="item second-item">
+            <div class="number">
+              
+            </div>
+            <div class="icon">
+              <img src="{{url_for ('static',filename='/images/icon-04.png')}}" alt="">
+            </div>
+            <h4>Compete</h4>
+            <p>Ready to prove your mettle in your specific domain? Compete against others with the same expertise as you and showcase your skills like never before!</p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="item">
+            <div class="icon">
+              <img src="{{url_for ('static',filename='/images/icon-06.png')}}" alt="">
+            </div>
+            <h4>Collect Exciting Rewards</h4>
+            <p>Showcasing your skills has never been more rewarding – earn exciting prizes and cash prizes with each triumph</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</body>
+
+
+<!--Important link source from https://bootsnipp.com/snippets/ooa9M-->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+<footer id="dk-footer" class="dk-footer" style="background-color: #212529;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-4">
+                    <div class="dk-footer-box-info">
+                        <a href="index.html" class="footer-logo">
+                          <img src="{{url_for('static',filename='images/skill.jpg')}}" ></a>
+                        <p class="footer-info-text">
+                           Embrace the challenge, ignite your potential, and let your determination light the path to victory
+                        </p>
+                        <div class="footer-social-link">
+                            <h3>Follow us</h3>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-google-plus"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-linkedin"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- End Social link -->
+                    </div>
+                    <!-- End Footer info -->
+                    <div class="footer-awarad">
+                        <img src="images/icon/best.png" alt="">
+                        <p>Best Design Company 2019</p>
+                    </div>
+                </div>
+                <!-- End Col -->
+                <div class="col-md-12 col-lg-8">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="contact-us">
+                                <div class="contact-icon">
+                                    <i class="fa fa-map-o" aria-hidden="true"></i>
+                                </div>
+                                <!-- End contact Icon -->
+                                <div class="contact-info">
+                                    <h3>TN India</h3>
+                                    <p>Coimbatore</p>
+                                </div>
+                                <!-- End Contact Info -->
+                            </div>
+                            <!-- End Contact Us -->
+                        </div>
+                        <!-- End Col -->
+                        <div class="col-md-6">
+                            <div class="contact-us contact-us-last">
+                                <div class="contact-icon">
+                                    <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
+                                </div>
+                                <!-- End contact Icon -->
+                                <div class="contact-info">
+                                    <h3>+919344269970</h3>
+                                    <p>Give us a call</p>
+                                </div>
+                                <!-- End Contact Info -->
+                            </div>
+                            <!-- End Contact Us -->
+                        </div>
+                        <!-- End Col -->
+                    </div>
+                    <!-- End Contact Row -->
+                    <div class="row">
+                        <div class="col-md-12 col-lg-6">
+                            <div class="footer-widget footer-left-widget">
+                                <div class="section-heading">
+                                    <h3>Useful Links</h3>
+                                    <span class="animate-border border-black"></span>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <a href="{{url_for('about')}}">About us</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Services</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url_for('forum')}}">Forums</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url_for('our_team')}}">Our Team</a>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li>
+                                        <a href="{{url_for('contact')}}">Contact us</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url_for('terms')}}">Terms and Conditions</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url_for('testimonials')}}">Testimonials</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url_for('FAQ')}}">Faq</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- End Footer Widget -->
+                        </div>
+                        <!-- End col -->
+                        <div class="col-md-12 col-lg-6">
+                            <div class="footer-widget">
+                                <div class="section-heading">
+                                    <h3>Subscribe</h3>
+                                    <span class="animate-border border-black"></span>
+                                </div>
+                                <p><!-- Don’t miss to subscribe to our new feeds, kindly fill the form below. -->
+                                We are eager to provide updates to you :).</p>
+                                <form action="#">
+                                    <div class="form-row">
+                                        <div class="col dk-footer-form">
+                                            <input type="email" class="form-control" placeholder="Email Address">
+                                            <button type="submit">
+                                                <i class="fa fa-send"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- End form -->
+                            </div>
+                            <!-- End footer widget -->
+                        </div>
+                        <!-- End Col -->
+                    </div>
+                    <!-- End Row -->
+                </div>
+                <!-- End Col -->
+            </div>
+            <!-- End Widget Row -->
+        </div>
+        <!-- End Contact Container -->
+
+
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span>Copyright © 2019, All Right Reserved </span>
+                    </div>
+                    <!-- End Col -->
+                    <div class="col-md-6">
+                        <div class="copyright-menu">
+                            <ul>
+                                <li>
+                                    <a href="#">Home</a>
+                                </li>
+                                <li>
+                                    <a href="#">Terms</a>
+                                </li>
+                                <li>
+                                    <a href="#">Privacy Policy</a>
+                                </li>
+                                <li>
+                                    <a href="{{url_for('contact')}}">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                </div>
+                <!-- End Row -->
+            </div>
+            <!-- End Copyright Container -->
+        </div>
+        <!-- End Copyright -->
+        <!-- Back to top -->
+        <div id="back-to-top" class="back-to-top">
+            <button id="moveToStart" class="btn btn-dark" title="Back to Top" style="display: block;">
+                <i class="fa fa-angle-up"></i>
+            </button>
+        </div>
+        <script>
+        // JavaScript code to handle button click and scroll to the top
+        document.getElementById("moveToStart").addEventListener("click", function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+        <!-- End Back to top -->
+</footer>
+<style>
+h4{
+  color: white;
+}
+   .animate-border {
+  position: relative;
+  display: block;
+  width: 115px;
+  height: 3px;
+  background: #007bff; }
+
+.animate-border:after {
+  position: absolute;
+  content: "";
+  width: 35px;
+  height: 3px;
+  left: 0;
+  bottom: 0;
+  border-left: 10px solid #fff;
+  border-right: 10px solid #fff;
+  -webkit-animation: animborder 2s linear infinite;
+  animation: animborder 2s linear infinite; }
+
+@-webkit-keyframes animborder {
+  0% {
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px); }
+  100% {
+    -webkit-transform: translateX(113px);
+    transform: translateX(113px); } }
+
+@keyframes animborder {
+  0% {
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px); }
+  100% {
+    -webkit-transform: translateX(113px);
+    transform: translateX(113px); } }
+
+.animate-border.border-white:after {
+  border-color: #fff; }
+
+.animate-border.border-yellow:after {
+  border-color: #F5B02E; }
+
+.animate-border.border-orange:after {
+  border-right-color: #007bff;
+  border-left-color: #007bff; }
+
+.animate-border.border-ash:after {
+  border-right-color: #EEF0EF;
+  border-left-color: #EEF0EF; }
+
+.animate-border.border-offwhite:after {
+  border-right-color: #F7F9F8;
+  border-left-color: #F7F9F8; }
+
+/* Animated heading border */
+@keyframes primary-short {
+  0% {
+    width: 15%; }
+  50% {
+    width: 90%; }
+  100% {
+    width: 10%; } }
+
+@keyframes primary-long {
+  0% {
+    width: 80%; }
+  50% {
+    width: 0%; }
+  100% {
+    width: 80%; } } 
+
+.dk-footer {
+  padding: 75px 0 0;
+  background-color: #151414;
+  position: relative;
+  z-index: 2; }
+  .dk-footer .contact-us {
+    margin-top: 0;
+    margin-bottom: 30px;
+    padding-left: 80px; }
+    .dk-footer .contact-us .contact-info {
+      margin-left: 50px; }
+    .dk-footer .contact-us.contact-us-last {
+      margin-left: -80px; }
+  .dk-footer .contact-icon i {
+    font-size: 24px;
+    top: -15px;
+    position: relative;
+    color:#007bff; }
+
+.dk-footer-box-info {
+  position: absolute;
+  top: -122px;
+  background: #202020;
+  padding: 40px;
+  z-index: 2; }
+  .dk-footer-box-info .footer-social-link h3 {
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 25px; }
+  .dk-footer-box-info .footer-social-link ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0; }
+  .dk-footer-box-info .footer-social-link li {
+    display: inline-block; }
+  .dk-footer-box-info .footer-social-link a i {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    background: #000;
+    margin-right: 5px;
+    color: #fff; }
+    .dk-footer-box-info .footer-social-link a i.fa-facebook {
+      background-color: #3B5998; }
+    .dk-footer-box-info .footer-social-link a i.fa-twitter {
+      background-color: #55ACEE; }
+    .dk-footer-box-info .footer-social-link a i.fa-google-plus {
+      background-color: #DD4B39; }
+    .dk-footer-box-info .footer-social-link a i.fa-linkedin {
+      background-color: #0976B4; }
+    .dk-footer-box-info .footer-social-link a i.fa-instagram {
+      background-color: #B7242A; }
+
+.footer-awarad {
+  margin-top: 285px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 100%;
+  -moz-box-flex: 0;
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items: center; }
+  .footer-awarad p {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 700;
+    margin-left: 20px;
+    padding-top: 15px; }
+
+.footer-info-text {
+  margin: 26px 0 32px; }
+
+.footer-left-widget {
+  padding-left: 80px; }
+
+.footer-widget .section-heading {
+  margin-bottom: 35px; }
+
+.footer-widget h3 {
+  font-size: 24px;
+  color: #fff;
+  position: relative;
+  margin-bottom: 15px;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content; }
+
+.footer-widget ul {
+  width: 50%;
+  float: left;
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+.footer-widget li {
+  margin-bottom: 18px; }
+
+.footer-widget p {
+  margin-bottom: 27px; }
+
+.footer-widget a {
+  color: #878787;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s; }
+  .footer-widget a:hover {
+    color: #007bff; }
+
+.footer-widget:after {
+  content: "";
+  display: block;
+  clear: both; }
+
+.dk-footer-form {
+  position: relative; }
+  .dk-footer-form input[type=email] {
+    padding: 14px 28px;
+    border-radius: 50px;
+    background: #2E2E2E;
+    border: 1px solid #2E2E2E; }
+  .dk-footer-form input::-webkit-input-placeholder, .dk-footer-form input::-moz-placeholder, .dk-footer-form input:-ms-input-placeholder, .dk-footer-form input::-ms-input-placeholder, .dk-footer-form input::-webkit-input-placeholder {
+    color: #878787;
+    font-size: 14px; }
+  .dk-footer-form input::-webkit-input-placeholder, .dk-footer-form input::-moz-placeholder, .dk-footer-form input:-ms-input-placeholder, .dk-footer-form input::-ms-input-placeholder, .dk-footer-form input::placeholder {
+    color: #878787;
+    font-size: 14px; }
+  .dk-footer-form button[type=submit] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 12px 24px 12px 17px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border: 1px solid #007bff;
+    background: #007bff;
+    color: #fff; }
+  .dk-footer-form button:hover {
+    cursor: pointer; }
+
+/* ==========================
+
+    Contact
+
+=============================*/
+.contact-us {
+  position: relative;
+  z-index: 2;
+  margin-top: 65px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items: center; }
+
+.contact-icon {
+  position: absolute; }
+  .contact-icon i {
+    font-size: 36px;
+    top: -5px;
+    position: relative;
+    color: #007bff; }
+
+.contact-info {
+  margin-left: 75px;
+  color: #fff; }
+  .contact-info h3 {
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 0; }
+
+.copyright {
+  padding: 28px 0;
+  margin-top: 55px;
+  background-color: #202020; }
+  .copyright span,
+  .copyright a {
+    color: #878787;
+    -webkit-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    transition: all 0.3s linear; }
+  .copyright a:hover {
+    color:#007bff; }
+
+.copyright-menu ul {
+  text-align: right;
+  margin: 0; }
+
+.copyright-menu li {
+  display: inline-block;
+  padding-left: 20px; }
+
+.back-to-top {
+  position: relative;
+  z-index: 2; }
+  .back-to-top .btn-dark {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    padding: 0;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #2e2e2e;
+    border-color: #2e2e2e;
+    display: none;
+    z-index: 999;
+    -webkit-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    transition: all 0.3s linear; }
+    .back-to-top .btn-dark:hover {
+      cursor: pointer;
+      background: #FA6742;
+      border-color: #FA6742; }
+
+</style>
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="{{url_for ('static',filename='/js/jquery.min.js')}}"></script>
+  <script src="{{url_for ('static',filename='/js/bootstrap.min.js')}}"></script>
+
+  <script src="{{url_for ('static',filename='/js/isotope.min.js')}}"></script>
+  <script src="{{url_for ('static',filename='/js/owl-carousel.js')}}"></script>
+
+  <script src="{{url_for ('static',filename='/js/tabs.js')}}"></script>
+  <script src="{{url_for ('static',filename='/js/popup.js')}}"></script>
+  <script src="{{url_for ('static',filename='/js/custom.js')}}"></script>
+  <script>
+    $(document).ready(function() {
+  $(".notification-drop .item").on('click',function() {
+    $(this).find('ul').toggle();
+  });
+});
+  </script>
+
+
+  
+</html>

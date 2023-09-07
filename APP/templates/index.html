@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
 
     <title>Liberty NFT Marketplace - HTML CSS Template</title>
 
@@ -26,7 +26,8 @@
     <link rel="stylesheet" href="{{ url_for ('static',filename='css/notification.css') }}">
     
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.11/paper-full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
 <!--
 
 TemplateMo 577 Liberty Market
@@ -35,8 +36,186 @@ https://templatemo.com/tm-577-liberty-market
 
 -->
   </head>
+   <script>
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+socket.on('notify', function(data) {
+
+  console.log(data)
+  var notifications = document.getElementsByClassName("notification");
+
+  for (var i = 0; i < notifications.length; i++) {
+    notifications[i].style.display = "block";
+  }
+
+  var title = document.getElementById('title');
+  var description = document.getElementById('description');
+  var price=document.getElementById("price");
+  var image=document.getElementById("images")
+  
+
+  title.innerHTML =data.title;
+  description.innerHTML =data.Description;
+  price.innerHTML=data.price;
+  image.src=data.url;
+  console.log(image)
+
+});
+function closeNotification(closeButton) {
+
+  var notification = closeButton.closest('.notification');
+
+  if (notification) {
+    notification.style.display = 'none';
+  }
+}
+
+
+    </script>
 
 <body>
+  <div class="notification">
+  <div class="notification-header">
+    <h3 class="notification-title">New notification</h3>
+    <a class="close" onclick="closeNotification(this)">&times;</a>
+  </div>
+  <div class="notification-container">
+    <div class="notification-media">
+      <img id="images" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="" class="notification-user-avatar">
+     
+    </div>
+    <div class="notification-content">
+      <p class="notification-text">
+      <p class="temp">Title:</p><strong id="title"></strong> <p class="temp">Description:</p><strong id="description"></strong> <p class="temp">Price:</p><strong id="price"></strong>
+      </p>
+      <span class="notification-timer">a few seconds ago</span>
+    </div>
+    <span class="notification-status"></span>
+  </div>
+</div>
+<style>
+  strong {
+  font-weight: 600;
+  color: black;
+}
+.temp{
+  color: black;
+}
+.notification {
+  display: none;
+  
+  width: 360px;
+  padding: 15px;
+  background-color: #6610f2;
+  border-radius: 16px;
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  transform: translateY(200%);
+  -webkit-animation: noti 15s infinite forwards alternate ease-in;
+  animation: noti 2s infinite forwards alternate ease-in;
+  z-index: 9999; /* Ensure it's on top of other elements */
+
+
+}
+.notification-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+.notification-title {
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+.notification-close {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F0F2F5;
+  font-size: 14px;
+}
+.notification-container {
+  display: flex;
+  align-items: flex-start;
+}
+.notification-media {
+  position: relative;
+}
+.notification-user-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.notification-reaction {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  color: white;
+  background-image: linear-gradient(45deg, #0070E1, #14ABFE);
+  font-size: 14px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.notification-content {
+  width: calc(100% - 60px);
+  padding-left: 20px;
+  line-height: 1.2;
+}
+.notification-text {
+  margin-bottom: 5px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 50px;
+}
+.notification-timer {
+  color: #1876F2;
+  font-weight: 600;
+  font-size: 14px;
+}
+.notification-status {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  /* transform: translateY(-50%); */
+  width: 15px;
+  height: 15px;
+  background-color: #1876F2;
+  border-radius: 50%;
+}
+
+@-webkit-keyframes noti {
+  50% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes noti {
+  50% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+  </style>
 
 
   <!-- ***** Preloader Start ***** -->
@@ -160,9 +339,16 @@ https://templatemo.com/tm-577-liberty-market
 
 
 <div class="wrapper" style="background-image: url('../static/images/dark-bg.jpg');">
-  <div class="box">
+  <div class="boxes">
     <img src="{{url_for('static',filename='images/refer_and_earn.jpg')}}" height="300px" width="50px">
   </div>
+  <div class="boxes">
+    <img src="{{url_for('static',filename='images/game_ad.jpg')}}" height="300px" width="50px">
+  </div>
+  <div class="boxes">
+    <img src="{{url_for('static',filename='images/Bingo.jpg')}}" height="300px" width="50px">
+  </div>
+</div>
   <style>
     @import url("https://fonts.googleapis.com/css?family=Raleway:400");
 
@@ -202,19 +388,21 @@ p {
 
 .wrapper {
   min-width: min(40rem, 100%);
+  display: flex;
 }
 
-.box {
+.boxes {
   font-size: 3vw;
   margin: max(1rem, 3vw);
-  border: 0.35rem solid;
+  border: 0.55rem solid;
   position: relative;
+  width: 20%;
   
   border-image: conic-gradient(from var(--angle), var(--c2), var(--c1) 0.1turn, var(--c1) 0.15turn, var(--c2) 0.25turn) 30;
   animation: borderRotate var(--d) linear infinite forwards;
 }
 
-.box:nth-child(2) {
+.boxes:nth-child(2) {
   border-image: radial-gradient(ellipse at var(--gradX) var(--gradY), var(--c1), var(--c1) 10%, var(--c2) 40%) 30;
   animation: borderRadial var(--d) linear infinite forwards;
 }
@@ -248,16 +436,11 @@ p {
   }
 }
   </style>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
 
-  <div class="categories-collections" style="padding-top: 400px;">
+ 
+ 
+
+  <div class="categories-collections" style="padding-top: 100px;">
 
 
 
@@ -605,7 +788,7 @@ p {
 
 
 
-</body>
+
 
 
 <!--Important link source from https://bootsnipp.com/snippets/ooa9M-->
@@ -1133,6 +1316,8 @@ h4{
   <script src="{{url_for ('static',filename='/js/tabs.js')}}"></script>
   <script src="{{url_for ('static',filename='/js/popup.js')}}"></script>
   <script src="{{url_for ('static',filename='/js/custom.js')}}"></script>
+      
+
   <script>
     $(document).ready(function() {
   $(".notification-drop .item").on('click',function() {
@@ -1142,5 +1327,6 @@ h4{
   </script>
 
 
+</body>
   
 </html>

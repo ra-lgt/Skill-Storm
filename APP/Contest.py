@@ -7,6 +7,7 @@ from datetime import datetime
 from Payment import Payment
 
 
+
 class Create_Contest:
 	config=Configurations()
 	database=config.Setup_DataBase()
@@ -28,6 +29,7 @@ class Create_Contest:
 
 
 	def push_user_data(self,title,description,username,price,royalities,options,email):
+		contest_type=random.choice(getattr(self.config,options))
 
 		payload={
 		'contest_id':self.generate_random_string(5),
@@ -36,7 +38,7 @@ class Create_Contest:
 		'username':username,
 		'price':price,
 		'royalities':royalities,
-		'options':options,
+		'options':contest_type,
 		'Type':'Hosted',
 		'Date':"",
 		'email':email
@@ -61,18 +63,27 @@ class Create_Contest:
 
 		user_databse=self.client['user_contest_data']
 		user_contest_join=user_databse[email]
+		
+		
+
+		
+
+		
 
 		user_contest_join.insert_one({'email':email,
 			"contest_id":contest_id,
 			'Type':"Hosted",
 			'title':payload['title'],
-			'options':payload['options'],
+			'options':contest_type,
 			'Date':payload['Date'],
 			'price':price,
 
-			'URL':self.Contest_image.child(payload['options']+".png").get_url(None) or None})
+			'URL':self.Contest_image.child((contest_type)+".png").get_url(None) or None})
 
-		return render_template('success.html',data="Your contest created successfully")
+		url=self.Contest_image.child((contest_type)+".png").get_url(None) or None
+		print(url)
+
+		return render_template('success.html',data="Your contest created successfully",payload=payload,url=self.Contest_image.child((contest_type)+".png").get_url(None) or None)
 		
 
 		

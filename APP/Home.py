@@ -276,9 +276,14 @@ def post_comments(title):
 
 @app.route('/forum')
 def forum():
-	forums_data=forums.forum_post_data()
-	comment_data=forums.forum_comment_data()
-
+	forums_data=0
+	comment_data=0
+	try:
+		forums_data=forums.forum_post_data()
+		comment_data=forums.forum_comment_data()
+	except:
+		print()
+	print(forums_data)
 	print(comment_data)
 
 	
@@ -437,6 +442,16 @@ def upi_gateway_host():
 	data=session.get('message')
 
 	return render_template('upi_payment.html',url='success_host',qr=data['qr'],title=data['title'],username=session.get('username'),Fee=data['ind_price'])
+@socketio.on_error()  # Handles all namespaces without an explicit error handler
+def handle_error(e):
+    print("An error occurred:", e)
+
+
+@socketio.on('success_host',namespace='/')
+def success_host(data):
+	print("helloooooooo",data)
+	emit('notify',data,namespace="/",broadcast=True)
+
 
 
 @app.route('/success_host')
@@ -452,6 +467,9 @@ def success_host():
 	royalities=data['royalities']
 	username=session.get('username')
 	options=data['options']
+
+	#socketio.emit('success_host', {'title':title,'price':price,'username':username,'description':description})
+
 
 	return contest.push_user_data(title,description,username,price,royalities,options,session.get('email'))
 

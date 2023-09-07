@@ -22,10 +22,12 @@
             <div class="comments">
                 <h3>Comments</h3>
                 <ul>
+                    {% if comment_data==0 %}
                     {% for j in range(comment_data[data['Title'][i]]['Username'] | length) %}
                     <li>{{comment_data[data['Title'][i]]['Comment'][j]}} &nbsp; @{{comment_data[data['Title'][i]]['Username'][j]}}</li>
                     
                     {% endfor %}
+                    {% endif %}
                     <!-- Add more comments here -->
                 </ul>
                 <form class="comment-form" method="POST" action="{{url_for('post_comments',title=data['Title'][i])}}">

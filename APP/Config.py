@@ -3,6 +3,12 @@ import pymongo
 import firebase_admin
 from firebase_admin import credentials, auth
 class Configurations:
+  Gaming=['Gaming','Gaming_2','Gaming_3']
+  Technology=['Technology','Technology_2','Technology_3']
+  Fitness=['fitness','fitness_2','fitness_3']
+  Music=['Music','Music_2','Music_3']
+  Photography=['Photography','Photography_2','Photography_3']
+
   
   firebaseConfig = {
   "apiKey": "AIzaSyBcZIhgtAzpRKAC0jXU6b1dPyoJw0ncjZE",

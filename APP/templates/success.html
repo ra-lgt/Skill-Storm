@@ -36,8 +36,30 @@
     <span></span>
     <span></span>
     HOME
-  </a>
+      </a>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
+<script>
+  var socket = io.connect('http://' + document.domain + ':' + location.port);
+  console.log("success_host")
+  var title="{{payload['title']}}"
+  var Description="{{payload['Description']}}"
+  var price="{{payload['price']}}"
+  var username="{{payload['username']}}"
+  var image="{{url}}";
+
+  console.log(image)
+
+  data={
+    title:title,
+    Description:Description,
+    price:price,
+    username:username,
+    url:image
+  }
+  console.log(data)
+  socket.emit('success_host',data);
+  </script>
 </body>
 </html>
 

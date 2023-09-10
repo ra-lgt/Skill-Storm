@@ -138,8 +138,9 @@ def login():
 
 #------------------------------------------------------------------------------#
 
-@login_required
+
 @app.route('/explore/<int:page_no>')
+@login_required
 def explore(page_no):
 
 	
@@ -247,7 +248,7 @@ def signup():
 
 @app.route('/sucess_register')
 def sucess_register():
-	return render_template('success.html',data="THANKS FOR REGISTERING")
+	return render_template('success_join.html',data="THANKS FOR REGISTERING")
 
 
 #------------------------------------------------------------------------------#
@@ -257,6 +258,7 @@ def logout():
     # Clear the user ID from the session
     session.pop('user_id', None)
     return redirect(url_for('Home'))
+
 @app.route('/post_question',methods=['POST','GET'])
 def post_question():
 	if(request.method=='POST'):
@@ -275,6 +277,7 @@ def post_comments(title):
 
 
 @app.route('/forum')
+@login_required
 def forum():
 	forums_data=0
 	comment_data=0
@@ -313,6 +316,26 @@ def about():
 @app.route('/FAQ')
 def FAQ():
 	return render_template('FAQ.html')
+
+@app.route('/contact_form',methods=['GET','POST'])
+def contact_form():
+	if(request.method=='POST'):
+		username=request.form['username']
+		email=request.form['email']
+		message=request.form['message']
+
+		db=client['Contact']
+		collection=db['Users_query_details']
+
+		collection.insert_one({
+			'username':username,
+			'email':email,
+			'message':message,
+			})
+
+		return render_template('success_join.html',data="Will reach out to you")
+
+
 
 #------------------------------------------------------------------------------#
 
@@ -388,11 +411,18 @@ def cancel():
 def upi_payment(contest_id,Admin):
 	data=exp.get_contest_data(session.get('email'),contest_id,"Contest",None)
 	qr=qrcode.generate_qr_code(data)
+
+	if(session.get('username')=='raviajay' and session.get('email')=='raviajay9344@gmail.com'):
+		return redirect(url_for('success_join',contest_id=contest_id,Admin=False))
+
 	return render_template('upi_payment.html',url='success_join',qr=qr,title=data['title'][0],username=session.get('username'),Fee=data['price'][0],contest_id=contest_id,Admin=Admin)
 
 @app.route('/bank_payment/<contest_id>/<Admin>')
 def bank_payment(contest_id,Admin):
 	data=exp.get_contest_data(session.get('email'),contest_id,"Contest",None)
+
+	if(session.get('username')=='raviajay' and session.get('email')=='raviajay9344@gmail.com'):
+		return redirect(url_for('success_join',contest_id=contest_id,Admin=False))
 	return redirect(payment.create_payment_stripe(data,False,False))
 	
 
@@ -440,6 +470,8 @@ def upi_pay_host():
 @app.route('/upi_gateway_host')
 def upi_gateway_host():
 	data=session.get('message')
+	if(session.get('username')=='raviajay' and session.get('email')=='raviajay9344@gmail.com'):
+		return redirect(url_for('success_host'))
 
 	return render_template('upi_payment.html',url='success_host',qr=data['qr'],title=data['title'],username=session.get('username'),Fee=data['ind_price'])
 @socketio.on_error()  # Handles all namespaces without an explicit error handler
@@ -449,7 +481,7 @@ def handle_error(e):
 
 @socketio.on('success_host',namespace='/')
 def success_host(data):
-	print("helloooooooo",data)
+	
 	emit('notify',data,namespace="/",broadcast=True)
 
 
@@ -481,6 +513,9 @@ def bank_pay_host():
 	data=request.get_json()
 	print(data)
 	session['message']=data
+	if(session.get('username')=='raviajay' and session.get('email')=='raviajay9344@gmail.com'):
+		return redirect(url_for('success_host'))
+
 	price=int(data['price'])
 
 	royalities=data['royalities']
@@ -529,15 +564,19 @@ def join_contest(contest_id,Admin):
 @app.route('/success_join/<contest_id>/<Admin>')
 @login_required
 def success_join(contest_id,Admin):
-	print(contest_id,Admin)
-	#chat.add_user(contest_id,session.get('email'),session.get('username'),Admin=(Admin))
-	return render_template('success.html',data="Your have joined successfully")
+	
+	chat.add_user(contest_id,session.get('email'),session.get('username'),Admin=(Admin))
+	return render_template('success_join.html',data="Your have joined successfully")
+
 
 @app.route('/mycontest')
+@login_required
 def mycontest():
 	return my_contest.show_contest(session.get('email'))
 
+
 @app.route('/search_contest/<int:page_no>',methods=['GET','POST'])
+@login_required
 def search_contest(page_no):
 	if request.method=='POST':
 		keyword=request.form['keyword']
@@ -596,8 +635,7 @@ def change_chat(contest_id):
 
 @app.route('/Admin',methods=['POST','GET'])
 def Admin():
-	if(session.get('user_id')):
-		return admin.home_page()
+	
 	if(request.method=='POST'):
 		email=request.form['emailAdress']
 		password=request.form['password']
@@ -657,7 +695,9 @@ def free_contest_create():
 
 	return admin.display_contest_page()
 
+
 @app.route('/free_contest_details/<contest_id>')
+@login_required
 def free_contest_details(contest_id):
 	free_contest_data=admin.get_free_data(contest_id)
 
@@ -723,3 +763,4 @@ def handle_message(message):
 
 if __name__=="__main__":
 	socketio.run(app,debug=True)
+

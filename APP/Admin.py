@@ -4,6 +4,7 @@ from Explore import Explore
 from Chat import Chat
 from Contest import Create_Contest
 from datetime import datetime
+import random
 
 
 class Admin:
@@ -96,6 +97,7 @@ class Admin:
 
 
 	def create_contest(self,title,description,price,options):
+		contest_type=random.choice(getattr(self.config,options))
 
 		ids=self.contest.generate_random_string(5)
 
@@ -109,8 +111,8 @@ class Admin:
 			'title':title,
 			'description':description,
 			'price':price,
-			'options':options,
-			'URL':self.Contest_image.child(options+".png").get_url(None) or None,
+			'options':contest_type,
+			'URL':self.Contest_image.child(contest_type+".png").get_url(None) or None,
 			'Date':current_date.strftime('%d-%B')
 
 			})

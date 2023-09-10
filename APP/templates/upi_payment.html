@@ -1,11 +1,13 @@
-<body>
+<html style="background-image: url('../static/images/dark-bg.jpg');">
+<link rel="icon" href="{{url_for('static',filename='/images/skill-black.jpg')}}" type="image/png">
+<body >
     <div class="div">
         <img src="data:image/png;base64,{{ qr }}" alt="QR Code">
         <div class="div2">
             <h1>Contest Title : {{title}}</h1>
             <h1>Payer Name : {{username}}</h1>
-            <h1>Fee : {{Fee}}</h1>
-            <h3>Steps to be followed</h3>
+            <h1>Fee : Rs{{Fee}}</h1>
+            <h3 style="color : white;">Steps to be followed</h3>
             <p>Step 1:Scan the QR code </p>
             <p>Step 2:Open the link in browser</p>
             <p>Step 3:Pay the Fee</p>
@@ -36,14 +38,14 @@
     </script>
 </body>
 
-
+</html>
 <style>
     html {
-    background-color: #cadff5;
+    
     font-family: "Outfit", sans-serif;
 }
 body {
-    min-height: 200vh;
+    
     display: block;
     align-items: center;
     justify-content: center;
@@ -72,10 +74,12 @@ img {
 h1 {
     font-size: 1.375rem;
     font-weight: 700;
+    color: white ;
 }
 
 p {
     font-size: 15px;
     font-weight: 400;
+    color: white;
 }
     </style>

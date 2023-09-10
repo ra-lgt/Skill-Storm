@@ -1,4 +1,4 @@
-
+<link rel="icon" href="{{url_for('static',filename='/images/skill-black.jpg')}}" type="image/png">
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Quicksand&amp;display=swap">
@@ -9,6 +9,10 @@
 <script src="https://unpkg.com/feather-icons"></script>
 
 <link rel="stylesheet" href="{{url_for('static',filename='css/Contact.css')}}">
+<title>Skill Storm | Contact Us</title>
+<meta charset="utf-8">
+    <meta name="author" content="skill-storm">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <body>
 <div class="container d-flex justify-content-center align-items-center">
@@ -320,7 +324,7 @@
   -------------------------------------------------------------
   ------------------------------------------------------------>
 	
-	<form>
+	<form method="post" action="/contact_form">
 		<h1 style="color : white;" class="title text-center mb-4">Talk to Us</h1>
 
 			<!-- Name -->
@@ -328,7 +332,7 @@
 				<label for="formName" class="d-block">
 					<i class="icon" data-feather="user"></i>
 				</label>
-				<input type="text" id="formName" class="form-control form-control-lg thick" placeholder="Name">
+				<input type="text" id="formName" class="form-control form-control-lg thick" placeholder="Name" name="username">
 			</div>
 
 			<!-- E-mail -->
@@ -336,12 +340,12 @@
 				<label for="formEmail" class="d-block">
 					<i class="icon" data-feather="mail"></i>
 				</label>
-				<input type="email" id="formEmail" class="form-control form-control-lg thick" placeholder="E-mail">
+				<input type="email" id="formEmail" class="form-control form-control-lg thick" placeholder="E-mail" name="email">
 			</div>
 
 			<!-- Message -->
 			<div class="form-group message">
-				<textarea id="formMessage" class="form-control form-control-lg" rows="7" placeholder="Message"></textarea>
+				<textarea id="formMessage" class="form-control form-control-lg" rows="7" placeholder="Message" name="message"></textarea>
 			</div>
 		
 			<!-- Submit btn -->

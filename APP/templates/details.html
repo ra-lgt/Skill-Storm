@@ -4,6 +4,7 @@
   <head>
 
     <meta charset="utf-8">
+    <link rel="icon" href="{{url_for('static',filename='/images/skill-black.jpg')}}" type="image/png">
     <meta name="author" content="templatemo">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -12,7 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 
-    <title>Liberty Template - NFT Item Detail Page</title>
+    <title>Skill Storm | Contest Details</title>
 
     <link href="{{ url_for ('static',filename='/css/bootstrap.min.css')}}" rel="stylesheet">
   
@@ -168,6 +169,12 @@ https://templatemo.com/tm-577-liberty-market
             <br>
             
           </form>!-->
+          {% if Admin %}
+          <div class="icon-button">
+                    <a href="{{url_for('success_join',contest_id=contest_id,Admin=Admin)}}"><button type="submit" id="form-submit" class="main-button">JOIN</button></a>
+                  </div>
+           {% else %} 
+
           <div class="icon-button">
                     <a href="#popup1"><button type="submit" id="form-submit" class="main-button">JOIN</button></a>
                   </div>
@@ -178,13 +185,13 @@ https://templatemo.com/tm-577-liberty-market
                       <br>
                       <div class="content">
                         <form action="{{url_for('upi_payment',contest_id=contest_id,Admin=Admin)}}">
-                        <button ><img src="{{url_for('static',filename='images/UPI.jpg')}}" height="75px" width="50px"></button>
+                        <button ><img src="{{url_for('static',filename='images/UPI.jpg')}}" height="200px" width="30px"></button>
                       </form>
                         <br>
                         <h2 align="center">OR</h2>
                         <br>
                         <form action="{{url_for('bank_payment',contest_id=contest_id,Admin=Admin)}}">
-                        <button><img src="{{url_for('static',filename='images/Bank.png')}}"height="100px" width="50px"></button>
+                        <button><img src="{{url_for('static',filename='images/Bank.png')}}"height="200px" width="50px"></button>
                       </form>
                       </div>
                     </div>
@@ -196,11 +203,11 @@ https://templatemo.com/tm-577-liberty-market
            <a href="{{url_for('account',view_email=email,view_username=data.username[0])}}"><button type="submit" id="form-submit" class="main-button">View Profile</button></a>
            <br>
            <br>
-           {% if not Admin %}
+           
             <p><strong>*NOTE:</strong> Your money will be refunded if the contest is cancelled (Not for free contest)</p>
-            {% endif %}
+            
 
-
+{% endif %}
 
 
            

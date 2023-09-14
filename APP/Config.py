@@ -4,8 +4,8 @@ import firebase_admin
 from firebase_admin import credentials, auth
 class Configurations:
   admin_creds={
-  'username':'raviajay',
-  'email':'raviajay9344@gmail.com'
+  'username':['raviajay','hardika'],
+  'email':['raviajay9344@gmail.com','hardikasc5@gmail.com']
   }
   Gaming=['Gaming_1','Gaming_2','Gaming_3']
   Technology=['Technology_1','Technology_2']

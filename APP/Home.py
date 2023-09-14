@@ -100,7 +100,7 @@ def Home():
 		payload['session']=session.get('user_id')
 
 	free_contest=admin.display_free_contest()
-	print(free_contest)
+	
 	
 	
 	return render_template('index.html',data=payload,notification=user_not,count=len(user_not['data']),free_contest=free_contest,free_count=len(free_contest['id']))
@@ -231,7 +231,8 @@ def signup():
 	mail.sucess_registration(data['username'],data['email'])
 
 	if(friend_referal_id!=''):
-		acc.add_referal(friend_referal_id.strip())
+		acc.add_referal(friend_referal_id.strip()) #Friends
+		acc.add_referal(data['referal_id'].strip()) #Yours
 
 	session['username']=''
 	session['email']=''
@@ -286,12 +287,15 @@ def forum():
 		comment_data=forums.forum_comment_data()
 	except:
 		print()
-	print(forums_data)
-	print(comment_data)
+	
 
 	
 
 	return render_template('forum.html',data=forums_data,count=len(forums_data['Title']),comment_data=comment_data)
+
+@app.route('/get_started')
+def get_started():
+	return render_template('get_started.html')
 
 @app.route('/contact')
 def contact():
@@ -410,12 +414,14 @@ def cancel():
 @app.route('/upi_payment/<contest_id>/<Admin>')
 def upi_payment(contest_id,Admin):
 	data=exp.get_contest_data(session.get('email'),contest_id,"Contest",None)
+	data['ind_price']=int(data['price'][0])*82
+	
 	qr=qrcode.generate_qr_code(data)
 
-	if(session.get('username')=='raviajay' and session.get('email')=='raviajay9344@gmail.com'):
+	if(session.get('username') in config.admin_creds['username'] and session.get('email') in config.admin_creds['email']):
 		return redirect(url_for('success_join',contest_id=contest_id,Admin=False))
 
-	return render_template('upi_payment.html',url='success_join',qr=qr,title=data['title'][0],username=session.get('username'),Fee=data['price'][0],contest_id=contest_id,Admin=Admin)
+	return render_template('upi_payment.html',url='success_join',qr=qr,title=data['title'][0],username=session.get('username'),Fee=data['ind_price'],contest_id=contest_id,Admin=Admin)
 
 @app.route('/bank_payment/<contest_id>/<Admin>')
 def bank_payment(contest_id,Admin):
@@ -459,7 +465,8 @@ def upi_pay_host():
 	'ind_price':str(price),
 	'description':data['description'],
 	'options':data['options'],
-	'royalities':data['royalities']
+	'royalities':data['royalities'],
+	'criteria':data['criteria']
 	}
 	session['message']=message
 	#return render_template('upi_payment.html',qr=qr,title=data['title'][0],username=session.get('username'),Fee=data['price'][0])
@@ -499,11 +506,12 @@ def success_host():
 	royalities=data['royalities']
 	username=session.get('username')
 	options=data['options']
+	criteria =data['criteria']
 
 	#socketio.emit('success_host', {'title':title,'price':price,'username':username,'description':description})
 
 
-	return contest.push_user_data(title,description,username,price,royalities,options,session.get('email'))
+	return contest.push_user_data(title,description,username,price,royalities,options,criteria,session.get('email'))
 
 
 
@@ -511,7 +519,7 @@ def success_host():
 @app.route('/bank_pay_host',methods=['POST','GET'])
 def bank_pay_host():
 	data=request.get_json()
-	print(data)
+	
 	session['message']=data
 	if(session.get('username')=='raviajay' and session.get('email')=='raviajay9344@gmail.com'):
 		return redirect(url_for('success_host'))
@@ -539,7 +547,7 @@ def bank_pay_host():
 	'status':200,
 	'url':pay
 	}
-	print('hello')
+	
 	return jsonify(message),200
 	
 
@@ -607,7 +615,7 @@ def search_contest(page_no):
 def message():
 	ids=chat.get_user_chat(session.get('email'))
 	history_chat=chat.get_history_chat(ids)
-	print(ids,"\n",history_chat)
+	
 	
 
 	
@@ -649,12 +657,14 @@ def Admin():
 	return admin.render_page()
 
 
-@app.route('/Admin_Contest_Delete/<contest_id>')
+@app.route('/Admin_Contest_Delete/<contest_id>/<Type>')
 
-def Admin_Contest_Delete(contest_id):
-	admin.delete_contest(contest_id)
+def Admin_Contest_Delete(contest_id,Type):
+	if(Type=='Hosted'):
+		Type="Contest"
+	admin.delete_contest(contest_id,Type)
 
-	redirect(url_for('Admin'))
+	return redirect(url_for('Admin'))
 
 @app.route("/admin_chat")
 def admin_chat():
@@ -723,13 +733,13 @@ def on_join(data):
     room = data['room']
     join_room(room)
     session['current_contest_id'] = room
-    print("JOIN"+room)
+    
 
 @socketio.on('leave')
 def on_leave(data):
     room = data['room']
     leave_room(room)
-    print("LEAVE"+room)
+    
     session.pop('current_contest_id', None)
 
 

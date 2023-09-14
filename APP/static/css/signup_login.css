@@ -198,7 +198,7 @@ section#formHolder {
   font-family: "Montserrat", sans-serif;
   outline: none !important;
 }
-.form form input:not([type=submit]) {
+.form form input:not([type=submit],[type=checkbox]) {
   background: none;
   outline: none;
   border: none;

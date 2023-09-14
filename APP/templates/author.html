@@ -75,7 +75,7 @@ https://templatemo.com/tm-577-liberty-market
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="index.html" class="logo">
-                        <img src="{{url_for ('static',filename='/images/logo.png')}}" alt="">
+                        <img src="{{url_for('static',filename='images/skill.jpg')}}" height="80px" width="10">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
@@ -154,7 +154,7 @@ https://templatemo.com/tm-577-liberty-market
 {% if view %}
 
         <form method="post" enctype="multipart/form-data" action="{{url_for('profile_picture')}}"style="padding-right: 1000px;">
-  <label for="apply"><input type="file" name="profile_picture" id="apply" accept="image/*,.pdf">Change Profile</label>
+  <label for="apply"><input type="file" name="profile_picture" id="apply" accept="image/*,.pdf" required>Change Profile</label>
 <button class="round-button">Upload</button>
 </form> 
 <p>*NOTE click on <strong>Change Profile</strong> and click <strong>Upload</strong> your name of the file will not be shown for security purpose</p>

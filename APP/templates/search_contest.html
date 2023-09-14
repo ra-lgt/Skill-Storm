@@ -213,8 +213,7 @@ https://templatemo.com/tm-577-liberty-market
         
        {% for i in range(start,end) %}
        
-       
-        <div class="col-lg-3" id="itemContainer">
+       <div class="col-lg-3" id="itemContainer">
           <div class="item">
             
             <div class="row">
@@ -232,17 +231,17 @@ https://templatemo.com/tm-577-liberty-market
                 <img src="{{data['URL'][i]}}" alt="Image absent" style="border-radius: 20px;">
                 
                 
-                <h4>{{data['title'][i]}}</h4>
+                <h5>{{data['title'][i]}}</h5>
                 
               </div>
               <div class="col-lg-12">
                 <div class="line-dec"></div>
                 <div class="row">
                   <div class="col-6">
-                    <span>Price: <br> <strong>USD {{(2.5 * data['price'][i]|int)}}</strong></span>
+                    <p>Price: <br> <p>USD {{(2.5 * data['price'][i]|int)}}</p></p>
                   </div>
                   <div class="col-6">
-                    <span>Hosted On: <br> <strong>{{data['Date'][i]}}</strong></span>
+                    <p>Hosted On: <br> <p>{{data['Date'][i]}}</p></p>
                   </div>
                 </div>
               </div>

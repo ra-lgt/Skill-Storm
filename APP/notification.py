@@ -41,7 +41,7 @@ class Notifications:
 			data['phone'].append(i.val()['phone'])
 			data['username'].append(i.val()['username'])
 			data['URL'].append(self.account.get_profile_pic(i.val()['username']))
-		print(data)
+		
 		
 		return render_template('push_notifications.html',data=data,count=len(data['email']))
 

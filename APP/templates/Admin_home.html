@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 
-    <title>Liberty Template - NFT Item Detail Page</title>
+    <title>Skill Storm| Admin</title>
 
     <link href="{{ url_for ('static',filename='/css/bootstrap.min.css')}}" rel="stylesheet">
   
@@ -132,7 +132,8 @@ https://templatemo.com/tm-577-liberty-market
         Options: {{data['options'][i]}}
         <br>
         <br>
-        <a href="{{url_for('Admin_Contest_Delete',contest_id=data['contest_id'][i])}}"><button class="button button--wayra button--border-thick button--text-upper button--size-s">Remove</button></a>
+        Type :{{data['Types'][i]}}
+        <a href="{{url_for('Admin_Contest_Delete',contest_id=data['contest_id'][i],Type=data['Types'][i])}}"><button class="button button--wayra button--border-thick button--text-upper button--size-s">Remove</button></a>
       </div>
 
     </li>

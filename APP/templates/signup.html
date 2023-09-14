@@ -1,5 +1,6 @@
 
 <html>
+<title>Skill Storm | Register & Login</title>
 <link rel="icon" href="{{url_for('static',filename='/images/skill-black.jpg')}}" type="image/png">
 <body>
 
@@ -69,37 +70,44 @@
 
                   <div class="form-group">
                      <label for="name">Username</label>
-                     <input type="text" name="username" id="name" class="name">
+                     <input type="text" name="username" id="name" class="name" required>
                      <span class="error"></span>
                   </div>
 
                   <div class="form-group">
                      <label for="email">Email Adderss</label>
-                     <input type="email" name="emailAdress" id="email" class="email">
+                     <input type="email" name="emailAdress" id="email" class="email" required>
                      <span class="error"></span>
                   </div>
 
                   <div class="form-group">
                      <label for="phone">Phone Number</label>
-                     <input type="text" name="phone" id="phone">
+                     <input type="text" name="phone" id="phone"  required>
                   </div>
 
                   <div class="form-group">
                      <label for="password">Password</label>
-                     <input type="password" name="password" id="password" class="pass">
+                     <input type="password" name="password" id="password" class="pass" required>
                      <span class="error"></span>
                   </div>
 
                   <div class="form-group">
                      <label for="passwordCon">Confirm Password</label>
-                     <input type="password" name="passwordCon" id="passwordCon" class="passConfirm">
+                     <input type="password" name="passwordCon" id="passwordCon" class="passConfirm" required>
                      <span class="error"></span>
                   </div>
                    <div class="form-group">
-                     <label for="name">Referal Id</label>
+                     <label for="name">Referal Id -OPTIONAL</label>
                      <input type="text" name="username" id="referal_id" class="name">
                      
                   </div>
+<br>
+<br>
+                  <input type="checkbox" id="terms" ><span>  I agree to the <a href="/terms">terms and confitions</a></span>
+                     
+                     
+                     
+                  
 
                   <div class="CTA">
                      <a href="#popup1" id="button">signup</a>
@@ -137,13 +145,11 @@
               
             </div>
 
-            <button class="btn btn-primary mb-3" id="verify">
+            <button class="btn btn-primary mb-3" id="verify" style="background-color : #7453fc; color: white;">
               Verify
             </button>
 
-            <p class="resend text-muted mb-0">
-              Didn't receive code? <a href="">Request again</a>
-            </p>
+              
           </div>
         </div>
       </div>
@@ -171,7 +177,12 @@
    var container = document.getElementById("containers");
     const con_password=document.getElementById('passwordCon').value;
     const referal_id=document.getElementById('referal_id').value;
+    const terms=document.getElementById("terms");
 
+    if(!terms.checked){
+      alert("Accept to the terms and conditions")
+    }
+    else{
      
     const data = {
         username: username,
@@ -214,7 +225,9 @@
   else{
     alert('PASSWORD MISMATCH')
   }
+}
 });
+
 
 
   document.getElementById("verify").addEventListener("click", function(event) {

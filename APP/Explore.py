@@ -17,7 +17,7 @@ class Explore:
 		data=self.get_contest_data(email,None,"Contest",filter)
 		if(data==None):
 			return render_template('404.html',error="No contest at the moment:( ")
-		end=min(len(data['options']),page_no*1)
+		end=min(len(data['options']),page_no*10)
 		start=(page_no-1)*1
 		prev=True
 		nexts=True
@@ -47,7 +47,8 @@ class Explore:
 		'Type':[],
 		'URL':[],
 		'Date':[],
-		'profile_url':[]
+		'profile_url':[],
+		'criteria':[]
 		}
 		is_contest_exists=True
 
@@ -63,9 +64,12 @@ class Explore:
 						if(value['email']==email):
 							continue
 						for keys,values in value.items():
+							#print(value['options'][0:len(value['options'])-2:])
 							
 
-							if(filter==None or (value['options']==filter['options'] or value['title']==filter['title'])):
+
+							if(filter==None or (value['options'][0:len(value['options'])-2:]==filter['options'] or value['title']==filter['title'])):
+
 								if(keys in result_data):
 									result_data[keys].append(values)
 			else:
@@ -77,6 +81,9 @@ class Explore:
 				for keys,values in value_1.items():
 					if(keys in result_data):
 						result_data[keys].append(values)
+
+
+		
 		
 
 
@@ -104,7 +111,7 @@ class Explore:
 		if(data==None):
 			return render_template('404.html',error="No contest at the moment:( ")
 		end=min(len(data['options']),page_no*10)
-		start=(page_no-1)*10
+		start=(page_no-1)*1
 		prev=True
 		nexts=True
 

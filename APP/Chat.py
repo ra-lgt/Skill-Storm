@@ -59,15 +59,15 @@ class Chat:
 		
 		data={'Admin':""}
 		collection.insert_one(data)
-		print((Admin))
+		
 
 
 		if(Admin=="True"):
-			print("HELL")
+			
 			self.join_free_contest(contest_id,email,username,user_contest_join)
 
 		else:
-			print("FUCK")
+			
 			contest_data=self.database.child("Contest").child(contest_id).order_by_child('contest_id').equal_to(contest_id).get()
 		#user_contest_join.insert_one({'email':email,"contest_id":contest_id,'Type':"Joined"})
 
@@ -101,7 +101,7 @@ class Chat:
 
 		contest_ids = [doc["value"] for doc in selected_documents]
 
-		print(contest_ids)
+		
 		
 
 
@@ -114,7 +114,7 @@ class Chat:
 
 		}
 		for i in ids:
-			print(i)
+			
 			try:
 				user_data=None
 
@@ -137,7 +137,7 @@ class Chat:
 				elif(Admin==False):
 					user_data=self.database.child("Joined").child(i).order_by_child('contest_id').equal_to(i).get()
 				
-				print(user_data.val())
+				
 				for key, values in user_data.val().items():
 
 					if(values.get("title") in data['title']):

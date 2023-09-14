@@ -57,7 +57,7 @@ https://templatemo.com/tm-577-liberty-market
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="index.html" class="logo">
-                        <img src="{{url_for ('static',filename='/images/logo.png')}}" alt="">
+                        <img src="{{url_for('static',filename='images/skill.jpg')}}" height="80px" width="10">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
@@ -246,17 +246,17 @@ https://templatemo.com/tm-577-liberty-market
                 <img src="{{data['URL'][i]}}" alt="Image absent" style="border-radius: 20px;">
                 
                 
-                <h4>{{data['title'][i]}}</h4>
+                <h5>{{data['title'][i]}}</h5>
                 
               </div>
               <div class="col-lg-12">
                 <div class="line-dec"></div>
                 <div class="row">
                   <div class="col-6">
-                    <span>Price: <br> <strong>USD {{(2.5 * data['price'][i]|int)}}</strong></span>
+                    <p>Price: <br> <p>USD {{(2.5 * data['price'][i]|int)}}</p></p>
                   </div>
                   <div class="col-6">
-                    <span>Hosted On: <br> <strong>{{data['Date'][i]}}</strong></span>
+                    <p>Hosted On: <br> <p>{{data['Date'][i]}}</p></p>
                   </div>
                 </div>
               </div>

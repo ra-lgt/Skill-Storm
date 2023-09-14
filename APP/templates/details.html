@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjis.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 
     <title>Skill Storm | Contest Details</title>
 
@@ -134,7 +134,13 @@ https://templatemo.com/tm-577-liberty-market
 
           </span>
           {% endif %}
+          <h6>Description:</h6>
           <p>{{data.Description[0]}}</p>
+          <br>
+          {% if not Admin %}
+          <h6>Requirements:</h6>
+          <p>{{data.criteria[0]}}</p>
+          {% endif %}
           <div class="row">
             <div class="col-3">
               {% if Admin %}
@@ -143,7 +149,7 @@ https://templatemo.com/tm-577-liberty-market
               </span>
               {% else %}
               <span class="bid">
-                Fees<br><strong>{{data.price[0]}}</strong><br>
+                Fees<br><strong>USD{{data.price[0]}}</strong><br>
               </span>
               {% endif %}
             </div>
@@ -205,6 +211,7 @@ https://templatemo.com/tm-577-liberty-market
            <br>
            
             <p><strong>*NOTE:</strong> Your money will be refunded if the contest is cancelled (Not for free contest)</p>
+             <p><strong>*NOTE</strong>If you win the contest the prize will be double the fee eg: if the fee is $10 if you win you'll get $20</p>
             
 
 {% endif %}

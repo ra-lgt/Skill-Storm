@@ -22,6 +22,7 @@ class Items:
 		'Type':[],
 		'URL':[],
 		'Date':[],
+		'criteria':[],
 		'profile_url':[]
 		}
 		user_name=self.account.get_user_name(email)
@@ -33,6 +34,8 @@ class Items:
 
 		for key,value in result_data.items():
 			contest_data[key].append(str(result_data[key][index]))
+
+
 
 
 		return render_template('details.html',email=emails,data=contest_data,contest_id=contest_id,Admin=False)

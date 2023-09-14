@@ -17,9 +17,9 @@ class Cyberbullying:
 		data=message.split(":")
 
 		for i in range(1,len(data)):
-			print(data[i]+"FUCK")
+			
 
-			print(data[i] in self.bad_words)
+			
 
 			if(data[i].strip() in self.bad_words):
 

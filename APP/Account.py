@@ -67,7 +67,7 @@ class Account:
 			collection=db['referal_ids']
 
 			balance=self.update_referal_id(referal_id,False)
-			print(balance)
+			
 
 			if(balance>=0):
 				filter_criteria = {'referal_id': referal_id}
@@ -110,7 +110,7 @@ class Account:
 	
 
 	def render_page(self,email,username,view=True):
-		print(view)
+		
 		user_data=self.database.child("Users").order_by_child('email').equal_to(email).get()
 		temp=user_data.val()
 

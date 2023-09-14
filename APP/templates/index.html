@@ -8,7 +8,7 @@
     <meta name="author" content="skill-storm">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="keywords" content="Skill competitions,Cash rewards,Online contests,Prize-winning contests,Contest hosting,Skill diversity,Competitive skills,Skill demonstration,Win cash online,Online talent showcase,Skills,Cash prizes,Rewards,Compete,Earn,Cash rewards,Gaming contests,Showcase talents,Online gaming,Contest winners,Skill competitions,Win money,Earn cash rewards,Jackpot winnings,Money contests,Cash competition,Instant cash prizes,Top cash awards,Daily cash contests,Cash prize competitions">
+    <meta name="keywords" content="Skill competitions,Cash rewards,Online contests,Prize-winning contests,Contest hosting,Skill diversity,Competitive skills,Skill demonstration,Win cash online,Online talent showcase,Skills,Cash prizes,Rewards,Compete,Earn,Cash rewards,Gaming contests,Showcase talents,Online gaming,Contest winners,Skill competitions,Win money,Earn cash rewards,Jackpot winnings,Money contests,Cash competition,Instant cash prizes,Top cash awards,Daily cash contests,Cash prize competitions,Free Cash Prizes,Win Free Money Online,Get Free Money Prizes,Win Free Cash Rewards,Free Cash Contests">
 
     <meta property="og:type" content="website">
 
@@ -306,7 +306,7 @@ function closeNotification(closeButton) {
             <p>Unleash Your Genius, Win Epic Rewards! Embark on an exhilarating journey to showcase your full potential in your expertise. Ignite your passion, conquer challenges, and stand out as the true master of your craft. The grandest rewards await those who dare to seize this ultimate opportunity. Join the ranks of the elite and let your brilliance shine!</p>
             <div class="buttons">
               <div class="border-button">
-                <a href="{{url_for('mycontest')}}">mycontest</a>
+                <a href="{{url_for('get_started')}}">Get Started</a>
               </div>
 
               {% if not data.session %}
@@ -426,7 +426,7 @@ function closeNotification(closeButton) {
                       <h2>Share and earn!!</h2>
                       <a class="close" href="#">&times;</a>
                       <div class="content">
-                        Host contests and refer your friends to enjoy great discounts on your hosting fees!<br><br>
+                        Host contests and refer your friends to enjoy great discounts on your hosting fees!(you as well as your friend)<br><br>
 
 1)Refer 1 Friend:<br><br>
 
@@ -1355,10 +1355,10 @@ a{
                     <div class="down-content">
                       <h4></h4>
                       {% set length= free_contest['options'][i] | length %}
-                      <span class="collection">Title:<br><strong>{{free_contest['title'][i]}}</strong></span>
-                      <span class="category">Category:<br><strong>{{free_contest['options'][i][0:length-2] }}</strong></span>
-                      <span class="collection">Price:<br><strong>USD{{free_contest['price'][i]}}</strong></span>
-                      <span class="category">Entry_fee:<br><strong>FREE</strong></span>
+                      <span class="collection">Title:<br><p>{{free_contest['title'][i]}}</p></span>
+                      <span class="category">Category:<br><p>{{free_contest['options'][i][0:length-2] }}</p></span>
+                      <span class="collection">Price:<br><p>USD{{free_contest['price'][i]}}</p></span>
+                      <span class="category">Entry_fee:<br><p>FREE</p></span>
                       <div class="main-button">
                         <a href="{{url_for('free_contest_details',contest_id=free_contest['id'][i])}}">View Details</a>
                       </div>

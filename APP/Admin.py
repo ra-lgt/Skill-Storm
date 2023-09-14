@@ -28,32 +28,50 @@ class Admin:
 		'options':[],
 		'title':[],
 		'Date':[],
-		'all_ids':[]	
+		'all_ids':[],
+		'Types':[]	
 		}
 
 		joined=self.explore.get_contest_data(None,None,"Joined",None)
 		Hosted=self.explore.get_contest_data(None,None,"Contest",None)
 
+		
 
 		if(joined!=None):
 			for key,value in joined.items():
 				for i in value:
+					
+					
 					if key in all_joined_data:
+						
 						all_joined_data[key].append(i)
 						if(key=='contest_id'):
-							all_joined_data['all_ids'].append(i)
 
+							all_joined_data['Types'].append("Joined")
+							
+							
+							all_joined_data['all_ids'].append(i)
+		
 		if(Hosted!=None):
 		
 			for key,value in Hosted.items():
 				for i in value:
+					
+					
+					if key in all_joined_data:
+
+						all_joined_data[key].append(i)
+
 					if(key=='contest_id'):
-						if(i not in all_joined_data['all_ids']):
-							all_joined_data['all_ids'].append(i)
+						all_joined_data['Types'].append("Hosted")
+						
+						all_joined_data['all_ids'].append(i)
 
 
 		if(len(all_joined_data['all_ids'])==0):
 			return False
+
+		#print(all_joined_data)
 
 		return all_joined_data
 
@@ -61,13 +79,13 @@ class Admin:
 	def home_page(self):
 
 		all_joined_data=self.get_contest_data()
-		print(all_joined_data)
+		
 		if(all_joined_data==False):
 			return render_template('Admin_home.html',contest=False)
 		else:
 			return render_template('Admin_home.html',data=all_joined_data,count=len(all_joined_data['contest_id']),contest=True)
 
-	def delete_contest(self,contest_id):
+	def delete_contest(self,contest_id,Type):
 		mongo_db=self.mongo_conn['Chats']
 
 		user_data=mongo_db['user_data']
@@ -78,7 +96,7 @@ class Admin:
 
 		mongo_db[contest_id].drop()
 
-		self.database.child("Joined").child(contest_id).remove()
+		self.database.child(Type).child(contest_id).remove()
 
 
 

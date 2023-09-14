@@ -24,7 +24,7 @@ class MyContest:
             for key,values in doc.items():
                 if key in data:
                     data[key].append(values)
-        print(data)
+        
 
 
 

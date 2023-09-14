@@ -28,7 +28,7 @@ class Create_Contest:
 
 
 
-	def push_user_data(self,title,description,username,price,royalities,options,email):
+	def push_user_data(self,title,description,username,price,royalities,options,criteria,email):
 		contest_type=random.choice(getattr(self.config,options))
 
 		payload={
@@ -41,6 +41,7 @@ class Create_Contest:
 		'options':contest_type,
 		'Type':'Hosted',
 		'Date':"",
+		'criteria':criteria,
 		'email':email
 		
 		}

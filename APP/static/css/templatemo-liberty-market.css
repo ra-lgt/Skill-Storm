@@ -1990,6 +1990,17 @@ Create Page Style
   font-weight: 500;
   color: #afafaf;
 }
+#contact textarea {
+  
+  text-align: left;
+  padding: 0px 15px;
+  background-color: #282b2f;
+  border: 1px solid #404245;
+  margin-bottom: 30px;
+  font-weight: 500;
+  color: #afafaf;
+}
+
 
 #contact input::placeholder {
   color: #afafaf;

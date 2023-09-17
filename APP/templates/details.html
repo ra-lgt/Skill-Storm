@@ -38,6 +38,19 @@ https://templatemo.com/tm-577-liberty-market
 
 -->
   </head>
+  <style>
+    #upi-button{
+      background-color: white;
+      border: white;
+
+    }
+    #bank-button{
+      background-color: white;
+      border: white;
+      padding-left:70px;
+
+    }
+  </style>
 
 <body>
 
@@ -191,13 +204,12 @@ https://templatemo.com/tm-577-liberty-market
                       <br>
                       <div class="content">
                         <form action="{{url_for('upi_payment',contest_id=contest_id,Admin=Admin)}}">
-                        <button ><img src="{{url_for('static',filename='images/UPI.jpg')}}" height="200px" width="30px"></button>
+                        <button id="upi-button" ><img src="{{url_for('static',filename='images/UPI.jpg')}}" height="200px" width="100px"></button>
                       </form>
                         <br>
                         <h2 align="center">OR</h2>
-                        <br>
                         <form action="{{url_for('bank_payment',contest_id=contest_id,Admin=Admin)}}">
-                        <button><img src="{{url_for('static',filename='images/Bank.png')}}"height="200px" width="50px"></button>
+                        <button id="bank-button"><img src="{{url_for('static',filename='images/Bank.png')}}"height="200px" width="100px"></button>
                       </form>
                       </div>
                     </div>

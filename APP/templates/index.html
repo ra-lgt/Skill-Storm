@@ -381,10 +381,10 @@ function closeNotification(closeButton) {
 
 .boxes {
   font-size: 3vw;
-  margin: max(1rem, 3vw);
+  margin: 3px;
   border: 0.55rem solid;
   position: relative;
-  width: 20%;
+  width: 50%;
   
   border-image: conic-gradient(from var(--angle), var(--c2), #6f42c1 0.1turn, #6f42c1 0.15turn, var(--c2) 0.25turn) 30;
   animation: borderRotate var(--d) linear infinite forwards;
@@ -842,7 +842,6 @@ a{
             margin: auto;
             overflow: hidden;
             border-radius: 5px 5px 0px 0px;
-            height: 200px;
         }
 
         .img-card .card-image img {
@@ -1355,10 +1354,21 @@ a{
                     <div class="down-content">
                       <h4></h4>
                       {% set length= free_contest['options'][i] | length %}
-                      <span class="collection">Title:<br><p>{{free_contest['title'][i]}}</p></span>
-                      <span class="category">Category:<br><p>{{free_contest['options'][i][0:length-2] }}</p></span>
-                      <span class="collection">Price:<br><p>USD{{free_contest['price'][i]}}</p></span>
-                      <span class="category">Entry_fee:<br><p>FREE</p></span>
+                      <span class="collection">Title: {{free_contest['title'][i]}}</span>
+                      <br>
+                      <br>
+                      
+                      <span class="category">Category: {{free_contest['options'][i][0:length-2] }}</span>
+                      <br>
+                      <br>
+                      
+                      <span class="collection">Price: USD {{free_contest['price'][i]}}</span>
+                      <br>
+                      <br>
+                      
+                      <span class="category">Entry_fee: FREE</span>
+                      
+                      
                       <div class="main-button">
                         <a href="{{url_for('free_contest_details',contest_id=free_contest['id'][i])}}">View Details</a>
                       </div>
@@ -1414,7 +1424,7 @@ a{
   @import url("https://fonts.googleapis.com/css?family=Roboto+Mono");
 
 .push{
-  padding-left: 100px;
+  padding-left: 50px;
 }
 .flip {
   position: relative;
@@ -1473,7 +1483,7 @@ a{
   height: 220px;
   padding: 1em 2em;
   background: #313131;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 .flip > .front p,
 .flip > .back p {
@@ -1563,7 +1573,7 @@ a{
                             <h3>Follow us</h3>
                             <ul>
                                 <li>
-                                    <a href="#">
+                                    <a href="https://www.facebook.com/kajay.ajay.1217">
                                         <i class="fa fa-facebook"></i>
                                     </a>
                                 </li>
@@ -1583,7 +1593,7 @@ a{
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="https://instagram.com/skill.storm?igshid=MzMyNGUyNmU2YQ==">
                                         <i class="fa fa-instagram"></i>
                                     </a>
                                 </li>

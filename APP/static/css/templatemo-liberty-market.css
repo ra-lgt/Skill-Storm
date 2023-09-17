@@ -919,7 +919,7 @@ Categories & Collections Style
 .collections .item span {
   color: #fff;
   display: inline-block;
-  width: 48%;
+  
   font-size: 15px;
 }
 
@@ -1686,6 +1686,7 @@ Details Page Style
 
 .item-details-page form {
   margin-top: 40px;
+  margin-left: 40px;
 }
 
 

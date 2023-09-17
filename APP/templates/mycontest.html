@@ -14,15 +14,17 @@
 <div class="main" >
     <h1 style="color: white;">My Contest</h1>
     <ul class="cards" style="color: #343a40;">
+
         {% for i in range(count) %}
+ {% set length= data['options'][i] | length %}
       <li class="cards_item">
         <div class="card" style="background-color: #343a40;">
           <div class="card_image"><img src="{{data['URL'][i]}}"></div>
           <div class="card_content">
             <h2 class="card_title">{{data['title'][i]}}</h2>
             <p class="card_text">Type : {{data['Type'][i]}}</p>
-            <p class="card_text">Category : {{data['options'][i]}}</p>
-            <p class="card_text">Price : USD {{(2.5 * data['price'][i]|int)}}</p>
+            <p class="card_text">Category : {{data['options'][i][0:length-2]}}</p>
+            <p class="card_text">Price : USD {{(1.7 * data['price'][i]|int)}}</p>
             <p class="card_text">Date : {{data['Date'][i]}}</p>
           </div>
         </div>

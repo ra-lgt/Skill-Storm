@@ -83,6 +83,12 @@ def login_required(view_function):
             return redirect(url_for('signup_login'))
     return decorated_function
 
+@app.route('/.well-known/pki-validation/628C744FD49E8622CE9E2C92B902AF43.txt')
+def ssl():
+    return ("""E489EACFD181A584E561FFF2A52B33F664B929A64A53C27E02818B40C1B23A38
+comodoca.com
+abf0132d699b3fb""")
+
 @app.route("/",endpoint="Home")
 def Home():
 	user_not={
@@ -289,8 +295,8 @@ def forum():
 		print()
 	
 
-	
-
+	print(forums_data)
+	print(comment_data)
 	return render_template('forum.html',data=forums_data,count=len(forums_data['Title']),comment_data=comment_data)
 
 @app.route('/get_started')

@@ -34,6 +34,19 @@ https://templatemo.com/tm-577-liberty-market
 
 -->
   </head>
+  <style>
+       #upi{
+      background-color: white;
+      border: white;
+
+    }
+    #bank{
+      background-color: white;
+      border: white;
+      padding-left:50px;
+
+    }
+  </style>
 
 <body>
 
@@ -150,14 +163,20 @@ https://templatemo.com/tm-577-liberty-market
 
                 <div class="col-lg-6">
                 <fieldset>
-                  <label for="criteria">Requirements</label>
-                  <textarea name="criteria" id="criteria" rows="3" cols="100" placeholder="Describe about your requirements that are needed for the opponents for this contest (*Note Admin may change the criteria if it is not valid)" required></textarea>
+                  <label for="criteria">Requirements</label><br>
+                  <textarea name="criteria" id="criteria" rows="3" cols="60" placeholder="Describe about your requirements that are needed for the opponents for this contest (*Note Admin may change the criteria if it is not valid)" required></textarea>
+                </fieldset>
+              </div>
+              <div class="col-lg-6">
+                <fieldset>
+                  <label class="custom-select" >
+                <label >Select the contest category default(Technology)</label>
+                  <select  name='options' id="options">
                 </fieldset>
               </div>
 
-              <label class="custom-select" >
-                <label >Select the contest category default(Technology)</label>
-    <select  name='options' id="options">
+             
+    
       
     <option value="Technology">Technology</option>
     <option value="Gaming">Gaming</option>
@@ -189,13 +208,11 @@ https://templatemo.com/tm-577-liberty-market
                       <br>
                       <div class="content">
                         
-                        <button id="upi"><img src="{{url_for('static',filename='images/UPI.jpg')}}" height="200px" width="50px"></button>
+                        <button id="upi"><img src="{{url_for('static',filename='images/UPI.jpg')}}" height="180px" width="30px"></button>
                       
                         <br>
-                        <h2 align="center">OR</h2>
-                        <br>
-                        
-                        <button id="bank"><img src="{{url_for('static',filename='images/Bank.png')}}"height="200px" width="50px"></button>
+                        <h2 align="center">OR</h2>            
+                        <button id="bank"><img src="{{url_for('static',filename='images/Bank.png')}}"height="180px" width="30px"></button>
                       </div>
                       </div>
                     </div>

@@ -18,6 +18,7 @@ from mycontest import MyContest
 from forum import Forum
 from Payment import Payment
 from flask_cors import CORS
+import logging
 
 # Initialize the Firebase Admin SDK
 
@@ -61,6 +62,41 @@ import random
 
 #home page it sends request to notifications to get data from notifications
 #if there is no session means it doesn't show any bars
+
+
+
+
+# Configure error logging
+app.config['PROPAGATE_EXCEPTIONS'] = True  # To propagate exceptions to log
+app.config['DEBUG'] = False  # Set to True for development, False for production
+
+# Define a log file and log level
+log_filename = 'flask_error.log'
+log_level = logging.ERROR  # Log only error and higher level messages
+
+# Create a file handler for the log file
+file_handler = logging.FileHandler(log_filename)
+file_handler.setLevel(log_level)
+
+# Create a log formatter
+formatter = logging.Formatter('%(asctime)s [%(levelname)s] %(message)s')
+file_handler.setFormatter(formatter)
+
+# Add the file handler to the app's logger
+app.logger.addHandler(file_handler)
+
+@app.errorhandler(500)
+def handle_500_error(error):
+    return render_template('500.html',data="Reload the home page again or check your credentials or clear your cookieand try again"), 500
+
+@app.route('/sitemap')
+def sitemap():
+	return render_template('sitemap.xml')
+
+@app.errorhandler(502)
+def handle_500_error(error):
+    return render_template('500.html',data="Reload the home page again or check your credentials or clear your cookieand try again"), 500
+
 def generate_otp():
 	sequence_length = 5
 	min_value = 10 ** (sequence_length - 1)  # Smallest 5-digit number (10000)

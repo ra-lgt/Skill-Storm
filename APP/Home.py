@@ -72,6 +72,11 @@ def generate_otp():
 def page_not_found(error):
     return render_template('404.html',error=None,solution=None), 404
 
+
+@app.route('/email_exists')
+def email_exists():
+	return render_template('404.html')
+
 def login_required(view_function):
     @wraps(view_function)
     def decorated_function(*args, **kwargs):
@@ -295,8 +300,7 @@ def forum():
 		print()
 	
 
-	print(forums_data)
-	print(comment_data)
+
 	return render_template('forum.html',data=forums_data,count=len(forums_data['Title']),comment_data=comment_data)
 
 @app.route('/get_started')
@@ -527,8 +531,7 @@ def bank_pay_host():
 	data=request.get_json()
 	
 	session['message']=data
-	if(session.get('username')=='raviajay' and session.get('email')=='raviajay9344@gmail.com'):
-		return redirect(url_for('success_host'))
+	
 
 	price=int(data['price'])
 
@@ -553,6 +556,7 @@ def bank_pay_host():
 	'status':200,
 	'url':pay
 	}
+	
 	
 	return jsonify(message),200
 	
@@ -778,5 +782,5 @@ def handle_message(message):
 	
 
 if __name__=="__main__":
-	socketio.run(app,debug=True)
+	socketio.run(app,debug=False)
 

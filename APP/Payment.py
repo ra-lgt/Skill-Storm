@@ -17,7 +17,7 @@ class Payment:
             name=data['title'][0]
             price=data['price'][0]
 
-        stripe.api_key="sk_test_51NjeU3SGNwCUKrPQUN8l7F30NtJIYdkDYU321GzP4wiOAgIyJbyHFJlulBmCSWS5Z3q2zR85YORuaj62sj0hhKjI00uQDEHS0s"
+        stripe.api_key="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"
         checkout_session=stripe.checkout.Session.create(
            line_items=[
             {

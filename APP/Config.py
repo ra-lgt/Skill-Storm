@@ -13,6 +13,7 @@ class Configurations:
   Music=['Music_1','Music_2','Music_3']
   Photography=['Photography_1','Photography_2','Photography_3']
   Editing=['Editing_1','Editing_2']
+  Other=['Other_1']
 
   
   firebaseConfig = {

@@ -101,9 +101,10 @@
                      <input type="text" name="username" id="referal_id" class="name">
                      
                   </div>
-<br>
-<br>
-                  <input type="checkbox" id="terms" ><span>  I agree to the <a href="/terms">terms and confitions</a></span>
+
+                  <input type="checkbox" id="terms" required>
+<span for="terms">I have read and agree to the <a href="{{url_for('terms')}}" target="_blank">Terms and Conditions</a></span>
+
                      
                      
                      
@@ -209,8 +210,9 @@
     .then(response => response.json())
     .then(data => {
         if(data['email_exists']==true){
+          var url="{{url_for('email_exists')}}"
           
-          window.location.href = 'http://127.0.0.1:5000/404';
+          window.location.href = url;
           alert('EMAIL ALREADY EXISTS')
 
 

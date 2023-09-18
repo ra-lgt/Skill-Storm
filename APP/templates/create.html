@@ -150,7 +150,7 @@ https://templatemo.com/tm-577-liberty-market
               <div class="col-lg-6">
                 <fieldset>
                   <label for="price">Your Bid</label>
-                  <input type="price" name="price" id="price" placeholder="Set your opponents entry fee" autocomplete="on" required>
+                  <input type="number" name="price" id="price" placeholder="Set your opponents entry fee" autocomplete="on" required>
                 </fieldset>
               </div>
               
@@ -295,6 +295,7 @@ https://templatemo.com/tm-577-liberty-market
     })
     .then(response => response.json())
     .then(data => {
+      console.log(data)
       if(data['status']==200){
         window.location.href=data['url']
       }
@@ -303,7 +304,7 @@ https://templatemo.com/tm-577-liberty-market
 
     })
     .catch(error => {
-        alert('ERROR')
+        alert(error)
     });
 
    

@@ -44,6 +44,16 @@ https://templatemo.com/tm-577-liberty-market
 
 -->
   </head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C6DX98HT12"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-C6DX98HT12');
+</script>
+
    <script>
         var socket = io.connect('http://' + document.domain + ':' + location.port);
 
@@ -331,7 +341,7 @@ function closeNotification(closeButton) {
         <div class="col-lg-5 offset-lg-1">
           <div class="owl-banner owl-carousel">
             <div class="item">
-              <img src="{{url_for ('static',filename='/images/banner-01.png')}}" alt=""><
+              <img src="{{url_for ('static',filename='/images/banner-01.png')}}" alt="">
             </div>
             <div class="item">
               <img src="{{url_for ('static',filename='/images/banner-02.png')}}" alt="">
@@ -476,7 +486,7 @@ Compete, challenge yourself, and stand a chance to win amazing prizes while doin
                       </div>
                     </div>
                   </div>
- !-->
+ 
  <div class="base"  style="background-image: url('../static/images/dark-bg.jpg')">
   <div class="section-heading"  style="background-image: url('../static/images/dark-bg.jpg')">
                   <div class="line-dec"></div>

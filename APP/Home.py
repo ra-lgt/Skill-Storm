@@ -49,7 +49,7 @@ database=config.Setup_DataBase()
 items=Items()
 qrcode=Qr_Code()
 chat=Chat()
-socketio = SocketIO(app)
+socketio = SocketIO(app,cors_allowed_origins="*")
 app.secret_key = 'Skill-Storm'
 client=Configurations.client
 admin=Admin()

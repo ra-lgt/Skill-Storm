@@ -48,7 +48,8 @@ class Explore:
 		'URL':[],
 		'Date':[],
 		'profile_url':[],
-		'criteria':[]
+		'criteria':[],
+		'Joinee_username':[]
 		}
 		is_contest_exists=True
 

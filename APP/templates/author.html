@@ -153,8 +153,20 @@ https://templatemo.com/tm-577-liberty-market
             {% endif %}
 
             <h4>{{data.username}} <br> <a href="#">@{{data.email}}</a></h4>
+
             
           </div>
+          {% if view %}
+          <h4 style="margin-left: 150%;">Balance:USD{{balance}}</h4>
+          <br>
+          <div class="col-lg-4" style="margin-left: 150%;">
+          <div class="main-button">
+            <a href="{{url_for('withdraw_money')}}">Withdraw</a>
+          </div>
+        </div>
+          {% endif %}
+
+
 
 
         </div>

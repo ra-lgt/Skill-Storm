@@ -24,6 +24,7 @@ class Items:
 		'Date':[],
 		'criteria':[],
 		'profile_url':[]
+		
 		}
 		user_name=self.account.get_user_name(email)
 		profile_pic=self.account.get_profile_pic(email)
@@ -33,6 +34,8 @@ class Items:
 		index=result_data['contest_id'].index(contest_id)
 
 		for key,value in result_data.items():
+			if(key=='Joinee_username'):
+				continue
 			contest_data[key].append(str(result_data[key][index]))
 
 

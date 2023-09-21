@@ -29,7 +29,9 @@ class Admin:
 		'title':[],
 		'Date':[],
 		'all_ids':[],
-		'Types':[]	
+		'Types':[],
+		'Joinee_username':[],
+		'price':[]	
 		}
 
 		joined=self.explore.get_contest_data(None,None,"Joined",None)
@@ -40,7 +42,7 @@ class Admin:
 		if(joined!=None):
 			for key,value in joined.items():
 				for i in value:
-					
+					print(key,value)
 					
 					if key in all_joined_data:
 						
@@ -61,6 +63,7 @@ class Admin:
 					if key in all_joined_data:
 
 						all_joined_data[key].append(i)
+						
 
 					if(key=='contest_id'):
 						all_joined_data['Types'].append("Hosted")
@@ -83,6 +86,8 @@ class Admin:
 		if(all_joined_data==False):
 			return render_template('Admin_home.html',contest=False)
 		else:
+			print(all_joined_data)
+			
 			return render_template('Admin_home.html',data=all_joined_data,count=len(all_joined_data['contest_id']),contest=True)
 
 	def delete_contest(self,contest_id,Type):

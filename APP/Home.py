@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request,session,redirect,url_for,make_response,jsonify
+from flask import Flask,render_template,request,session,redirect,url_for,make_response,jsonify,send_file
 from Config import Configurations
 from Contest import Create_Contest
 from Explore import Explore
@@ -19,6 +19,7 @@ from forum import Forum
 from Payment import Payment
 from flask_cors import CORS
 import logging
+from withdraw import Withdraw
 
 # Initialize the Firebase Admin SDK
 
@@ -27,6 +28,7 @@ import logging
 
 date_time=datetime.datetime.now()
 cyber=Cyberbullying()
+withdraw=Withdraw()
 payment=Payment()
 config=Configurations()
 auth=config.Setup_auth()
@@ -89,9 +91,10 @@ app.logger.addHandler(file_handler)
 def handle_500_error(error):
     return render_template('500.html',data="Reload the home page again or check your credentials or clear your cookieand try again"), 500
 
-@app.route('/sitemap')
+@app.route('/sitemap', methods=['GET'])
 def sitemap():
-	return render_template('sitemap.xml')
+	xml_file_path = 'sitemap.xml'
+	return send_file(xml_file_path, mimetype='application/xml')
 
 @app.errorhandler(502)
 def handle_500_error(error):
@@ -163,8 +166,12 @@ def login():
 		password=request.form['loginPassword']
 		
 
-		
-		userauth=auth.sign_in_with_email_and_password(email,password)
+		try:
+			userauth=auth.sign_in_with_email_and_password(email,password)
+		except:
+			error_url = url_for('error', data="Invalid login", reason="Check your credentials and try again or contact us")
+
+			return redirect(error_url)
 		cookie=userauth['idToken']
 		session['user_id'] = cookie
 
@@ -269,6 +276,7 @@ def signup():
 		}
 	
 	auth.create_user_with_email_and_password(data['email'],data['password'])
+	withdraw.generate_user_register_balance(data['username'],data['email'])
 
 	
 
@@ -599,8 +607,51 @@ def bank_pay_host():
 
 
 
+@app.route('/winner/<price>/<username>/<contest_id>')
+@login_required
+def winner(price,username,contest_id):
+	withdraw.winner_add_balance(username,price,contest_id)
+	return price	
 
+@app.route('/withdraw_money')
+@login_required
+def withdraw_money():
+	return withdraw.render_page(session.get('username'),session.get('email'))
 
+@app.route('/make_withdraw/<Type>',methods=['POST','GET'])
+@login_required
+def make_withdraw(Type):
+	withdraw_result=False
+
+	if(request.method=='POST'):
+		if(Type=='paypal'):
+			email=request.form['email']
+			amount=request.form['amount']
+			withdraw_result=withdraw.withdraw_users_balance(session.get('email'),Type,{"paypal_email":email,"amount":amount})
+
+		elif(Type=='upi'):
+			amount=request.form['amount']
+			upi_id=request.form['upi_id']
+			withdraw_result= withdraw.withdraw_users_balance(session.get('email'),Type,{"upi_id":upi_id,"amount":amount})
+
+		elif(Type=='bank'):
+			acc_number=request.form['acc_number']
+			ifsc_number=request.form['ifsc_number']
+			recieptant_name=request.form['recieptant_name']
+			amount=request.form['amount']
+			withdraw_result= withdraw.withdraw_users_balance(session.get('email'),Type,{"acc_number":acc_number,"ifsc_number":ifsc_number,"recieptant_name":recieptant_name,"amount":amount})
+
+	if(withdraw_result==False):
+			error_url = url_for('error', data="Your balance is low", reason="Withdraw amount range should be within your balance")
+			return redirect(error_url)
+	return render_template('success_join.html',data="Withdraw successful")
+
+@app.route('/error')
+def error():
+	data = request.args.get('data')
+	reason = request.args.get('reason')
+
+	return render_template('error.html',data={"data":data,"reason":reason})
 
 @app.route('/join_contest/<contest_id>/<Admin>')
 @login_required
@@ -818,5 +869,5 @@ def handle_message(message):
 	
 
 if __name__=="__main__":
-	socketio.run(app,debug=True)
+	socketio.run(app,debug=False)
 

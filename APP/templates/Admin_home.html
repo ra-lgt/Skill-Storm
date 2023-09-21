@@ -113,6 +113,8 @@ https://templatemo.com/tm-577-liberty-market
 <div style="background-color: #212529;">
         <h1 style="text-align : center;">All Joined Contest</h1>
   <ol class="olcards">
+    {% set index = 0 %}
+
     {% if contest %}
     {% for i in range(count) %}
     <li style="--cardColor:#fc374e">
@@ -133,7 +135,18 @@ https://templatemo.com/tm-577-liberty-market
         <br>
         <br>
         Type :{{data['Types'][i]}}
+        <br>
+        <br>
+        Price : {{data['price'][i]}}
+       
         <a href="{{url_for('Admin_Contest_Delete',contest_id=data['contest_id'][i],Type=data['Types'][i])}}"><button class="button button--wayra button--border-thick button--text-upper button--size-s">Remove</button></a>
+
+       <a href="{{url_for('winner',price=data['price'][i],username=data['username'][i],contest_id=data['contest_id'][i])}}"> <button class="button button--wayra button--border-thick button--text-upper button--size-s">Hoster : {{data['username'][i]}}</button></a>
+        {% if data['Types'][i]=="Joined" %}
+
+        <a href="{{url_for('winner',price=data['price'][i],username=data['Joinee_username'][i],contest_id=data['contest_id'][i])}}"><button class="button button--wayra button--border-thick button--text-upper button--size-s">Joinee : {{data['Joinee_username'][i]}} </button></a>
+        
+        {% endif %}
       </div>
 
     </li>

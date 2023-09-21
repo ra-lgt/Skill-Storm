@@ -27,7 +27,8 @@ class Chat:
 				'title':i['title'],
 				'price':i['price'],
 				'URL':self.Contest_image.child(i['options']+".png").get_url(None) or None,
-				'username':username
+				'username':"Admin",
+				'Joinee_username':username
 				}
 			self.database.child("Joined").child(contest_id).push(data)
 			database.insert_one(data)
@@ -74,7 +75,6 @@ class Chat:
 			self.database.child("Contest").child(contest_id).remove()
 
 			for key,value in contest_data.val().items():
-				self.database.child("Joined").child(contest_id).push(value)
 			
 				data={
 				'email':value['email'],
@@ -84,8 +84,11 @@ class Chat:
 				'Date':value['Date'],
 				'title':value['title'],
 				'price':value['price'],
+				'username':value['username'],
+				'Joinee_username':username,
 				'URL':self.Contest_image.child(value['options']+".png").get_url(None) or None
 				}
+				self.database.child("Joined").child(contest_id).push(data)
 				user_contest_join.insert_one(data)
 				break
 

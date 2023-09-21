@@ -3,12 +3,14 @@ import requests
 from Config import Configurations
 import os
 import shutil
+from withdraw import Withdraw
 
 class Account:
 	config=Configurations()
 	database=config.Setup_DataBase()
 	update_profile=config.Setup_Storage()
 	client=config.client
+	user_balance=Withdraw()
 
 	def get_referal_details(self,email):
 		user_data=self.database.child("Users").order_by_child('email').equal_to(email).get()
@@ -145,9 +147,10 @@ class Account:
 
 
 		payload['url']=self.get_profile_pic(username)
+		balance=self.user_balance.get_user_balance(email)
 		
 
-		return render_template('author.html',data=payload,count=len(payload['options']),view=view)
+		return render_template('author.html',data=payload,count=len(payload['options']),view=view,balance=balance)
 
 
 	def update_profile_picture(self,file,email,username):
